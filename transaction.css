@@ -71,15 +71,8 @@
     margin-bottom: 22px;
 }
 .filter-search{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background-color: #f8fbfa;
-    border: 1px solid #e5eeeb;
-    border-radius: 8px;
-    padding: 10px 12px;
-    flex: 1;
-    min-width: 190px;
+    flex: 1 1 200px;
+    min-width: 180px;
 }
 .filter-search i{
     color: #71817e;
@@ -93,12 +86,14 @@
 }
 .transaction-filters select{
     padding: 11px 12px;
+    min-width: 140px;
     border: 1px solid #e5eeeb;
     border-radius: 8px;
     background-color: #ffffff;
     color: #526663;
     font-size: 13px;
     outline: none;
+    flex: 1 1 150px;
 }
 
 .custom-date-range{
