@@ -26,9 +26,6 @@
     margin-bottom: 45px;
     font-size: 25px;
 }
-.sidebar.logo i{
-    color: #10a88a;
-}
 .sidebar-nav{
     display: flex;
     flex-direction: column;
@@ -125,7 +122,6 @@
 .icon-button{
     border: none;
     background-color: #ffffff;
-    color: #263b39;
     font-size: 17px;
 }
 .profile-circle{
