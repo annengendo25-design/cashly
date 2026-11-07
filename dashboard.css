@@ -19,7 +19,7 @@
     flex-direction: column;
     border-right: 1px solid #e8f0ee;
 }
-.sidebar.logo{
+.sidebar .logo{
     display: flex;
     align-items: center;
     gap: 9px;
