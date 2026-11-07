@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transactions | Cashly</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="dashboard.css" />
+    <link rel="stylesheet" href="transactions.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css"
+    />
+  </head>
+  <body class="dashboard-body">
+    <div class="dashboard-container">
+      <aside class="sidebar">
+        <a href="index.html" class="logo">
+          <i class="fa-brands fa-canadian-maple-leaf"></i>Cashly <span>.</span>
+        </a>
+
+        <nav class="sidebar-nav">
+          <a href="dashboard.html" class="sidebar-link active">
+            <i class="fa-solid fa-house"></i>
+            <span>Dashboard</span>
+          </a>
+
+          <a href="transactions.html" class="sidebar-link">
+            <i class="fa-solid fa-money-bill-wave"></i>
+            <span>Transactions</span>
+          </a>
+
+          <a href="settings.html" class="sidebar-link">
+            <i class="fa-solid fa-gear"></i>
+            <span>Settings</span>
+          </a>
+        </nav>
+
+        <div class="sidebar-promo">
+          <i class="fa-solid fa-chart-line"></i>
+          <h3>Spend Smart.</h3>
+          <p>Save More.</p>
+        </div>
+      </aside>
+
+      <main class="dashboard-main">
+        <header class="dashboard-topbar">
+          <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="search" placeholder="Search transactions" />
+          </div>
+
+          <div class="topbar-actions">
+            <button class="icon-button" aria-label="Toggle theme">
+              <i class="fa-solid fa-moon"></i>
+            </button>
+            <div class="profile-circle">N</div>
+          </div>
+        </header>
+
+        <section class="transactions-heading">
+            <div>
+                <h1>Transactions</h1>
+                <p>Manage and keep track of all you income and expenses.</p>
+            </div>
+
+            <button class="add-transaction-button"><i class="fa-solid fa-plus"></i>Add Transaction</button>
+        </section>
+
+        <section class="transaction-summary">
+            <article class="transaction-summary-card">
+                <p>Total Transaction</p>
+                <h2>24</h2>
+                <img src="" alt="receipt">
+            </article>
+
+            <article class="transaction-summary-card">
+                <p>Total Income</p>
+                <h2 class="income-text">KES 120,000</h2>
+                <img src="" alt="arrow up">
+            </article>
+
+            <article class="transaction-summary-card">
+                <p>Total Expenses</p>
+                <h2 class="expense-text">KES 75,000</h2>
+                <img src="" alt="arrow down">
+            </article>
+        </section>
+
+        <section class="transaction-list-section">
+            <div class="transaction-list-heading">
+                <div>
+                    <h2>All Transactions</h2>
+                    <p>View,Search and manage your financial records.</p>
+                </div>
+            </div>
+
+            <div class="transaction-filters">
+                <div class="filter-search">
+                    <img src="" alt="search">
+                    <input type="search"
+                    placeholder="Search by description..."
+                    id="table-search">
+                </div>
+
+                <select id="type-filter">
+                    <option value="all">All Types</option>
+                    <option value="income">Income</option>
+                    <option value="expenses">Expenses</option>
+                </select>
+
+                <select id="category-filter">
+                    <option value="all">All Categories</option>
+                    <option value="food">Food</option>
+                    <option value="transport">Transport</option>
+                    <option value="bills">Bills</option>
+                    <option value="shopping">Shopping</option>
+                    <option value="salary">Salary</option>
+                    <option value="freelance">Freelance</option>
+                </select>
+
+                <select id="date-filter">
+                    <option value="all">All Dates</option>
+                    <option value="7days">7 Days</option>
+                    <option value="month">This Month</option>
+                    <option value="custom">Custom Range</option>
+                </select>
+
+                <select id="sort-filter">
+                    <option value="newest">Newest First</option>
+                    <option value="oldest">Oldest First</option>
+                    <option value="highest">Highest Amount</option>
+                    <option value="lowest">Lowest Amount</option>
+                </select>
+            </div>
+
+            <div class="custom-date-range" id="custom-date-range" hidden>
+                <label>
+                    From:
+                    <input type="date"
+                    id="start-date">
+                </label>
+                <label>
+                    To
+                    <input type="date"
+                    id="end-date">
+                </label>
+            </div>
+
+            <div class="table-container">
+                <table class="transaction-table">
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Category</th>
+                            <th>Description</th>
+                            <th>Date</th>
+                            <th>Amount</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody class="transaction-list">
+                        <tr>
+                            <td>
+                                <span class="transaction-icon income"><img src="" alt=""></span>
+                            </td>
+
+                            <td>Salary</td>
+                            <td>Monthly Salary</td>
+                            <td>Nov 01,2026</td>
+                            <td class="income-text">+KES 95,000</td>
+                            <td><button class="action-button edit-button" aria-label="Edit Transaction"><img src="" alt=""></button>
+                            <button class="action-button delete-button" aria-label="Delete Transaction"><img src="" alt=""></button></td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <span class="transaction-icon expense"><img src="" alt="down"></span>
+                            </td>
+                            <td>Food</td>
+                            <td>Lunch at cafe</td>
+                            <td>Nov 02,2026</td>
+                            <td class="expense-text">-KES 800</td>
+                            <td><button class="action-button edit-button" aria-label="Edit Transaction"><img src="" alt=""></button>
+                            <button class="action-button delete-button" aria-label="Delete Transaction"><img src="" alt=""></button></td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <span class="transaction-icon expense"><img src="" alt="down"></span>
+                            </td>
+                            <td>Transport</td>
+                            <td>Matatu fare</td>
+                            <td>Nov 03,2026</td>
+                            <td class="expense-text">-KES 300</td>
+                            <td><button class="action-button edit-button" aria-label="Edit Transaction"><img src="" alt=""></button>
+                            <button class="action-button delete-button" aria-label="Delete Transaction"><img src="" alt=""></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p class="transaction-count">Showing 3 transactions</p>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
