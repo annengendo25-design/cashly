@@ -298,7 +298,7 @@
 .table-container{
     width: 100%;
 }
-.transcation-table{
+.transaction-table{
     width: 100%;
     border-collapse: separate;
     border-spacing: 0;
@@ -308,32 +308,33 @@
     text-align: left;
     font-size: 13px;
 }
-.transcation-table th{
+.transaction-table th{
     color: #71817e;
     background-color: #f7faf9;
     font-weight: 600;
     padding: 13px 10px;
     border-bottom: 1px solid #e5eeeb;
 }
-.transcation-table td{
+.transaction-table td{
     padding: 15px 10px;
     border-bottom: 1px solid #e5eeeb;
 
 }
-.transcation-icon{
+.transaction-icon{
     display: inline-flex;
-    width: 25px;
-    height: 25px;
+    width: 28px;
+    height: 28px;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    font-weight: 800;
+    font-size: 18px;
+    font-weight: 900;
 }
-.transcation-icon.income{
-    background-color: #ddf8ee;
+.transaction-icon.income{
+    background-color: #d3f3e6;
     color: #10a88a;
 }
-.transcation-icon.expense{
+.transaction-icon.expense{
     background-color: #fde8e9;
     color: #df6565;
 }
