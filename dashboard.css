@@ -300,6 +300,11 @@
 }
 .transcation-table{
     width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px solid #e5eeeb;
+    border-radius: 12px;
+    overflow: hidden;
     text-align: left;
     font-size: 13px;
 }
@@ -308,9 +313,12 @@
     background-color: #f7faf9;
     font-weight: 600;
     padding: 13px 10px;
+    border-bottom: 1px solid #e5eeeb;
 }
 .transcation-table td{
     padding: 15px 10px;
+    border-bottom: 1px solid #e5eeeb;
+
 }
 .transcation-icon{
     display: inline-flex;
