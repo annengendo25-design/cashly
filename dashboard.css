@@ -9,7 +9,10 @@
 
 .sidebar{
     width: 245px;
-    min-height: 100vh;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
     background-color: #ffffff;
     padding: 30px 20px;
     display: flex;
@@ -73,7 +76,8 @@
 }
 
 .dashboard-main{
-    flex: 1;
+    margin-left: 245px;
+    width: calc(100% - 245px);
     min-width: 0;
     padding: 25px 35px;
 }
