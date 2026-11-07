@@ -179,13 +179,13 @@
     background-color: #ffffff;
     font-size: 17px;
 }
-.income-card.summary-icon{
+.income-card .summary-icon{
     color: #10a88a;
 }
-.expense-card.summary-icon{
+.expense-card .summary-icon{
     color: #df6565;
 }
-.balance-card.summary-icon{
+.balance-card .summary-icon{
     color: #9250c4;
 }
 .summary-info p{
