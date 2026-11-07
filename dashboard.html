@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Cashly</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body class="dashboard-body">
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <a href="index.html" class="logo">
+                <img src="" alt="">Cashly <span>.</span>
+            </a>
+
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="sidebar-link active">
+                    <img src="" alt="">
+                    <span>Dashboard</span>
+                </a>
+
+                <a href="transactions.html" class="sidebar-link">
+                    <img src="" alt="">
+                    <span>Transactions</span>
+                </a>
+
+                <a href="settings.html" class="sidebar-link">
+                    <img src="" alt="">
+                    <span>Settings</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-promo">
+                <img src="" alt="">
+                <h3>Spend Smart.</h3>
+                <p>Save More.</p>
+            </div>
+        </aside>
+
+        <main class="dashboard-main">
+            <header class="dashboard-topbar">
+                <div class="search-box">
+                    <img src="" alt="">
+                    <input type="search"
+                    placeholder="Search transactions">
+                </div>
+
+                <div class="topbar-actions">
+                    <button class="icon-button" aria-label="Toggle theme">
+                        <img src="" alt="">
+                    </button>
+                    <div class="profile-circle">N</div>
+                </div>
+            </header>
+
+            <section class="welcome-section">
+                <h1>Welcome back!</h1>
+                <p>Here's your financial overview</p>
+            </section>
+
+            <section class="summary-grid">
+                <article class="summary-card income-card">
+                    <div class="summary-icon">
+                        <img src="" alt="">
+                    </div>
+
+                    <div class="summary-info">
+                        <p>Total Income</p>
+                        <h2>KES 120,000</h2>
+                        <span>+12% this month</span>
+                    </div>
+                </article>
+
+                <article class="summary-card expense-card">
+                    <div class="summary-icon">
+                        <img src="" alt="">
+                    </div>
+                    <div class="summary-info">
+                        <p>Total Expenses</p>
+                        <h2>KES 75,000</h2>
+                        <span>+8% this month</span>
+                    </div>
+                </article>
+
+                <article class="summary-card balance-card">
+                    <div class="summary-icon">
+                        <img src="" alt="">
+                    </div>
+                    <div class="summary-info">
+                        <p>Available Balance</p>
+                        <h2>KES 45,000</h2>
+                        <span>+4% this month</span>
+                    </div>
+                </article>
+            </section>
+
+            <section class="charts-grid">
+                <article class="dashboard-card chart-card">
+                    <div class="card-heading">
+                        <h3><img src="" alt="">Expense by Category</h3>
+                    </div>
+
+                    <div class="chart-placeholder">
+                        <div class="pie-placeholder"></div>
+
+                        <div class="chart-legend">
+                            <p><span class="legend-dot food"></span>Food <b>35%</b></p>
+                            <p><span class="legend-dot transport"></span>Transport <b>25%</b></p>
+                            <p><span class="legend-dot bills"></span>Bills <b>15%</b></p>
+                            <p><span class="legend-dot shopping"></span>Shopping <b>20%</b></p>
+                            <p><span class="legend-dot others"></span>Others <b>5%</b></p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="dashboard-card chart-card">
+                    <div class="card-heading">
+                        <h3><img src="" alt="">Income VS Expenses</h3>
+                    </div>
+
+                    <div class="bar-chart-placeholder">
+                        <p>Chart will appear here</p>
+                    </div>
+                </article>
+            </section>
+
+            <section class="dashboard-card recent-section">
+                <div class="card-heading">
+                    <h3><img src="" alt="">Recent Transactions</h3>
+                    <a href="transactions.html" class="view-all">View All <img src="" alt=""></a>
+                </div>
+
+                <div class="table-container">
+                    <table class="transaction-table">
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>Category</th>
+                                <th>Description</th>
+                                <th>Date</th>
+                                <th>Amount</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <span class="transaction-icon income"><img src="" alt=""></span>
+                                </td>
+                                <td>Salary</td>
+                                <td>Monthly Salary</td>
+                                <td>Nov 01,2026</td>
+                                <td class="income-text">+KES 95,000</td>
+                                <td>--</td>
+                            </tr>
+
+                            <tr>
+                                <td><span class="transaction-icon expense"><img src="" alt=""></span></td>
+                                <td>Food</td>
+                                <td>Lunch at cafe</td>
+                                <td>Nov 02,2026</td>
+                                <td class="expense-text">-KES 800</td>
+                                <td>--</td>
+                            </tr>
+
+                            <tr>
+                                <td><span class="transaction-icon expense"><img src="" alt=""></span></td>
+                                <td>Transport</td>
+                                <td>Matatu fare</td>
+                                <td>Nov 03,2026</td>
+                                <td class="expense-text">-KES 300</td>
+                                <td>--</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <button class="add-transaction-button">
+                <img src="" alt="">
+                Add Transactions
+            </button>
+        </main>
+    </div>  
+</body>
+</html>
