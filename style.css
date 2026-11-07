@@ -178,7 +178,7 @@ header{
     font-size: 17px;
     margin-bottom: 10px;
 }
-.features-card,
+.features-card p,
 .why-card p{
     font-size: 14px;
     color: #71817e;
@@ -199,6 +199,15 @@ header{
 }
 .about-image img{
     max-height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.about-image img{
+    width: 100%;
+    max-width: 450px;
+    height: 350px;
+    object-fit: contain;
 }
 .about-content{
     max-width: 520px;
