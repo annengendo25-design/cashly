@@ -113,32 +113,6 @@
     border: 1px solid #e5eeeb;
     border-radius: 8px;
 }
-
-.action-button{
-    width: 32px;
-    height: 32px;
-    border: none;
-    border-radius: 7px;
-    margin-right: 5px;
-    transition: 0.3s ease;
-}
-.edit-button{
-    background-color: #f0e5fa;
-    color: #9250c4;
-}
-.delete-button{
-    background-color: #fde8e9;
-    color: #9250c4;
-}
-.delete-button:hover{
-    color: #ffffff;
-    background-color: #df6565;
-}
-.edit-button:hover{
-    background-color: #bc77ec;
-    color: #ffffff;
-}
-
 .transaction-count{
     margin-top: 18px;
     color: #71817e;
