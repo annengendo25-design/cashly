@@ -1,4 +1,4 @@
-.transactions-main{
+.dashboard-main{
     padding-bottom: 50px;
 }
 .transactions-heading{
@@ -21,15 +21,13 @@
 .transaction-summary{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    margin-bottom: 30px;
+    gap: 18px;
+    width: 100%;
 }
 .transaction-summary-card{
-    position: relative;
-    background-color: white;
-    border: 1px solid #e8f0ee;
-    border-radius: 15px;
-    padding: 22px;
+    display: block;
+    min-width: 0;
+    width: auto;
 }
 .transaction-summary-card p{
     color: #71817e;
