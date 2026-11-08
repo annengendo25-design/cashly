@@ -147,3 +147,17 @@
 .toggle-switch input:checked+ .toggle-slider::before{
     transform: translateX(21px);
 }
+.clear-data-button{
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.3s ease;
+    border-radius: 5px;
+    padding: 12px 18px;
+}
+.clear-data-button:hover{
+    background-color: #b02a37;
+    transform: translateY(-2px);
+}
