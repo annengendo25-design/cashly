@@ -35,6 +35,13 @@ function convertAmount(amount){
     }
     return amount*rates.rates[selectedCurrency];
 }
+function formatConvertedAmount(amount){
+    const selectedCurrency=localStorage.getItem("cashlyCurrency")||"KES";
+    return new Intl.NumberFormat("en-KE",{
+        style:"currency",
+        currency:selectedCurrency
+    }).format(amount);
+}
 dashboardIncome.textContent=formatCurrency(totalIncome);
 dashboardExpenses.textContent=formatCurrency(totalExpenses);
 dashboardBalance.textContent=formatCurrency(availableBalance);
@@ -107,7 +114,9 @@ expenseTransactions.forEach(function(transaction){
     }
 });
 const categories=Object.keys(categoryTotals);
-const categoryAmounts=Object.values(categoryTotals);
+const categoryAmounts=Object.values(categoryTotals).map(function(amount){
+    return convertAmount(amount);
+});
 const expenseChart=document.getElementById("expense-category-chart");
 if(expenseChart&& categories.length>0){
     new Chart(expenseChart,{
@@ -134,6 +143,13 @@ if(expenseChart&& categories.length>0){
             plugins:{
                 legend:{
                     position:"bottom"
+                },
+                tooltip:{
+                    callbacks:{
+                        label:function(context){
+                            return context.label+":"+formatConvertedAmount(context.raw);
+                        }
+                    }
                 }
             }
         }
@@ -165,6 +181,13 @@ if(incomeExpenseChart){
             plugins:{
                 legend:{
                     display:false
+                },
+                tooltip:{
+                    callbacks:{
+                        label:function(context){
+                            return formatConvertedAmount(context.raw);
+                        }
+                    }
                 }
             },
             scales:{
@@ -176,6 +199,6 @@ if(incomeExpenseChart){
     });
 }
 
-window.addEventListener("currencyRatedUpdated",function(){
-    location.reloadI();
+window.addEventListener("currencyRatesUpdated",function(){
+    location.reload();
 });
