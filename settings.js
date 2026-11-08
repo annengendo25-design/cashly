@@ -15,3 +15,10 @@ settingsForm.addEventListener("submit",function(event){
 });
 fullNameInput.value=localStorage.getItem("cashlyUserName") ||"";
 emailInput.value=localStorage.getItem("cashlyUserEmail") ||"";
+
+currencySelect.addEventListener("change",function(){
+    const selectedCurrency=currencySelect.value;
+    localStorage.setItem("cashlyCurrency",selectedCurrency);
+    alert("Currency preference saved!");
+});
+currencySelect.value=localStorage.getItem("cashlyCurrency") ||"KES";
