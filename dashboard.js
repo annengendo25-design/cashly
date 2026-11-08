@@ -61,7 +61,7 @@ function displayRecentTransactions(){
         dateCell.textContent=formattedDate;
         const amountCell=document.createElement("td");
         amountCell.className= `${typeClass}-text`;
-        amountCell.textContent=`${sign}KES ${transaction.amount.toLocaleString("en-KE")}`;
+        amountCell.textContent= `${sign}${formatCurrency(transaction.amount)}`;
         const actionsCell=document.createElement("td");
         actionsCell.textContent="--";
         row.append(
