@@ -81,3 +81,48 @@ const dashboardAddButton=document.querySelector(".add-transaction-button");
 dashboardAddButton.addEventListener("click",function(){
     window.location.href="transactions.html?add=true";
 });
+const expenseTransactions=transactions.filter(function(transaction){
+    return transaction.type==="expense";
+});
+const categoryTotals={};
+expenseTransactions.forEach(function(transaction){
+    if(categoryTotals[transaction.category]){
+        categoryTotals[transaction.category]+=transaction.amount;
+    }
+    else{
+        categoryTotals[transaction.category]=transaction.amount;
+    }
+});
+const categories=Object.keys(categoryTotals);
+const categoryAmounts=Object.values(categoryTotals);
+const expenseChart=document.getElementById("expense-category-chart");
+if(expenseChart&& categories.length>0){
+    new Chart(expenseChart,{
+        type:"pie",
+        data:{
+            labels:categories,
+            datasets:[{
+                data:categoryAmounts,
+                backgroundColor:[
+                    "#9250c4",
+                    "#f4a261",
+                    "#2a9d8f",
+                    "#e76f51",
+                    "#457b9d",
+                    "#e9c46a"
+                ],
+                borderWidth:2,
+                borderColor:"#ffffff"
+            }]
+        },
+        options:{
+            responsive:true,
+            maintainAspectRatio:false,
+            plugins:{
+                legend:{
+                    position:"bottom"
+                }
+            }
+        }
+    });
+}
