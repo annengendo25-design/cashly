@@ -126,3 +126,37 @@ if(expenseChart&& categories.length>0){
         }
     });
 }
+
+const incomeExpenseChart=document.getElementById("income-expense-chart");
+if(incomeExpenseChart){
+    new Chart(incomeExpenseChart,{
+        type:"bar",
+        data:{
+            labels:["Income","Expenses"],
+            datasets:[{
+                label:"Amount (KES)",
+                data:[totalIncome,totalExpenses],
+                backgroundColor:[
+                     "#2a9d8f",
+                    "#e76f51"
+                ],
+                borderRadius:8,
+                barThickness:60
+            }]
+        },
+        options:{
+            responsive:true,
+            maintainAspectRatio:false,
+            plugins:{
+                legend:{
+                    display:false
+                }
+            },
+            scales:{
+                y:{
+                    beginAtZero:true
+                }
+            }
+        }
+    });
+}
