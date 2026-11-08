@@ -28,7 +28,7 @@ const defaultCategories=[
 {name:"Bills",type:"expense"},
 {name:"Shopping",type:"expense"},
 {name:"Salary",type:"income"},
-{name:"Freelance",type:"expense"},    
+{name:"Freelance",type:"income"},    
 ];
 function getAllCategories(){
     return[...defaultCategories,...customCategories];
