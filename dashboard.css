@@ -369,3 +369,8 @@
     background-color: #a65bd9;
     transform: translateX(-3px);
 }
+.chart-placeholder{
+    position: relative;
+    height: 280px;
+    width: 100%;
+}
