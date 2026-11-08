@@ -35,3 +35,53 @@ function updateProfileInitial(){
     }
 }
 updateProfileInitial();
+
+const baseCurrency="KES";
+const currencyCacheKey="cashlyExchangeRates";
+const oneDay=24*60*60*1000;
+let exchangeRates=JSON.parse(
+    localStorage.getItem(currencyCacheKey)
+)|| null;
+window.cashlyFormatCurrency=function(amount){
+    const selectedCurrency=localStorage.getItem("cashlyCurrency") ||"KES";
+    const rate=exchangeRates?.rates?.[selectedCurrency];
+    const convertedAmount=selectedCurrency==="KES"
+    ?amount:rate ?amount*rate:amount;
+    const displayCurrency=rate || selectedCurrency==="KES"
+    ?selectedCurrency:"KES";
+    return new Intl.NumberFormat("en-KE",{
+        style:"currency",
+        currency:displayCurrency
+    }).format(convertedAmount);
+};
+window.cashlyLoadCurrencyRates=async function(){
+    const cacheIsFresh=exchangeRates&&Date.now()-exchangeRates.savedAt<oneDay;
+    if(cacheIsFresh){
+        return;
+    }
+    try{
+        const response=await fetch(
+            "https://open.er-api.com/v6/latest/KES"
+        );
+        if(!response.ok){
+            throw new Error("Could not fetch exchange rates.");
+        }
+        const data=await response.json();
+        if(data.result !=="success"){
+            throw new Error("Exchange rate service returned an error.");
+        }
+        exchangeRates={
+            rates:data.rates,
+            savedAt:Date.now()
+        };
+        localStorage.setItem(
+            currencyCacheKey,
+            JSON.stringify(exchangeRates)
+        );
+        window.dispatchEvent(new Event("currencyRatesUpdated"));
+    }
+    catch(error){
+        console.error("Currency conversion error:",error);
+    }
+};
+window.cashlyLoadCurrencyRates();
