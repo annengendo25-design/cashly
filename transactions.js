@@ -1,4 +1,4 @@
-tconst addTransactionBtn=document.getElementById("add-transaction-btn");
+const addTransactionBtn=document.getElementById("add-transaction-btn");
 const transactionModal=document.getElementById("transaction-modal");
 const cancelTransactionBtn=document.getElementById("cancel-transaction");
 const transactionForm=document.getElementById("transaction-form");
@@ -52,38 +52,38 @@ const sampleTransactions=[
 
 let transactions=JSON.parse(localStorage.getItem("cashlyTransactions")) || sampleTransactions;
 function saveTransactions(){
-    function updateSummaryCards(){
-        const totalIncome=transactions
-        .filter(function(transaction){
-            return transaction,type==="income";
-        })
-        .reduce(function(total, transaction){
-            return total+transaction.amount;
-        },0);
-        const totalExpenses=transactions
-        .filter(function(transaction){
-            return transaction.type==="expense";
-        })
-        .reduce(function(total, transaction){
-            return total+transaction.amount;
-        },0);
-        const totalTransactions=transactions.length;
-        const formattedIncome=totalIncome.toLocaleString("en-KE");
-        const formattExpenses=totalExpenses.toLocaleString("en-KE");
-        summaryCards[0].textContent=totalTransactions;
-        summaryCards[1].textContent=`KES ${formattedIncome}`;
-        summaryCards[2].textContent=`KES ${formattedExpenses}`;
-    }
-    localStorage.setItem("cashlyTransactions",JSON.stringify(transactions));
+    localStorage.setItem("cashlyTransactions", JSON.stringify(transactions));
+}
+function updateSummaryCards(){
+    const totalIncome=transactions
+    .filter(function(transaction){
+        return transaction.type==="income";
+    })
+    .reduce(function(total,transaction){
+        return total+transaction.amount;
+    },0);
+    const totalExpenses=transactions
+    .filter(function(transaction){
+        return transaction.type==="expense";
+    })
+    .reduce(function(total,transaction){
+        return total+transaction.amount;
+    },0);
+    const totalTransactions=transactions.length;
+    const formattedIncome=totalIncome.toLocaleString("en-KE");
+    const formattedExpenses=totalExpenses.toLocaleString("en-KE");
+    summaryCards[0].textContent=totalTransactions;
+    summaryCards[1].textContent=`KES ${formattedIncome}`;
+    summaryCards[2].textContent=`KES ${formattedExpenses}`;
 }
 function formatDate(date){
     return new Date(date+"T00:00:00").toLocaleDateString("en-US",{
         month:"short",
         day:"2-digit",
-        year:"numeric",
+        year:"numeric"
     });
 }
-
+       
 function displayTransactions(){
     transactionList.innerHTML="";
     transactions.forEach(function(transaction){
@@ -93,34 +93,33 @@ function displayTransactions(){
         const icon=transaction.type==="income" ? 
         "fa-solid fa-arrow-up-long":
         "fa-solid fa-arrow-down-long";
-        const formattedAmount=transaction.amount.toLocalString("en-KE");
+        const formattedAmount=transaction.amount.toLocaleString("en-KE");
         const sign=transaction.type==="income" ? "+": "-";
         row.innerHTML= `
         <td>
            <span class="transaction-icon ${typeClass}">
-             <i class ="fa-solid ${icon}"></i>
+             <i class ="${icon}"></i>
             </span>
         </td>
 
         <td>${transaction.category.charAt(0).toUpperCase()+ transaction.category.slice(1)}</td>
+        <td>${transaction.description}</td>
 
         <td>${formatDate(transaction.date)}</td>
 
-        <td class="${typeClass}-text>
+        <td class="${typeClass}-text">
           ${sign}KES ${formattedAmount}
         </td>
 
         <td>
           <button class="action-button edit-button" aria-label="Edit Transaction">
-           <i class="fa-solid fa-pen-nib></i>
+           <i class="fa-solid fa-pen-nib"></i>
            </button>
           <button class="action-button delete-button" aria-label="Delete Transaction">
-           <i class="fa-solid fa-trash></i>
+           <i class="fa-solid fa-trash"></i>
            </button>
         </td>
         `;
-
-       row.children[2].textContent=transaction.description;
        transactionList.appendChild(row); 
     });
 
@@ -130,7 +129,6 @@ function displayTransactions(){
 transactionForm.addEventListener("submit",function(event){
     event.preventDefault();
     const transactionData={
-        id:Date.now(),
         type:transactionType.value,
         category:transactionCategory.value,
         description:transactionDescription.value.trim(),
