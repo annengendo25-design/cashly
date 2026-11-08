@@ -135,7 +135,9 @@ if(incomeExpenseChart){
             labels:["Income","Expenses"],
             datasets:[{
                 label:`Amount (${localStorage.getItem("cashlyCurrency")||"KES"})`,
-                data:[totalIncome,totalExpenses],
+                data:[
+                    convertAmount(totalIncome),
+                    convertAmount(totalExpenses)],
                 backgroundColor:[
                      "#2a9d8f",
                     "#e76f51"
