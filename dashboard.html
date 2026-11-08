@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard | Cashly</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="dashboard.js" defer></script>
     <script src="common.js" defer></script>
     <link rel="stylesheet" href="style.css">
@@ -106,15 +107,7 @@
                     </div>
 
                     <div class="chart-placeholder">
-                        <div class="pie-placeholder"></div>
-
-                        <div class="chart-legend">
-                            <p><span class="legend-dot food"></span>Food <b>35%</b></p>
-                            <p><span class="legend-dot transport"></span>Transport <b>25%</b></p>
-                            <p><span class="legend-dot bills"></span>Bills <b>15%</b></p>
-                            <p><span class="legend-dot shopping"></span>Shopping <b>20%</b></p>
-                            <p><span class="legend-dot others"></span>Others <b>5%</b></p>
-                        </div>
+                        <canvas id="expense-category-chart"></canvas>
                     </div>
                 </article>
 
