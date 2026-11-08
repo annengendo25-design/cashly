@@ -296,7 +296,7 @@ function filterTransactions(){
         });
     }
     else if(dateFilter.value==="month"){
-        filteredTransactions=filteredTransactions(function(transaction){
+        filteredTransactions=filteredTransactions.filter(function(transaction){
             const transactionDate=new Date(transaction.date+"T00:00:00");
             return transactionDate.getMonth()===today.getMonth()&&
             transactionDate.getFullYear()===today.getFullYear();
