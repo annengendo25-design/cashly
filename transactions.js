@@ -148,7 +148,7 @@ function displayTransactions(transactionArray=transactions){
         const icon=transaction.type==="income" ? 
         "fa-solid fa-arrow-up-long":
         "fa-solid fa-arrow-down-long";
-        const formattedAmount=transaction.amount.toLocaleString("en-KE");
+        const formattedAmount=window.cashlyFormatCurrency(transaction.amount);
         const sign=transaction.type==="income" ? "+": "-";
         row.innerHTML= `
         <td>
