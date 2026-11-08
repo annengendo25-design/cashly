@@ -19,6 +19,55 @@ const sortFilter=document.getElementById("sort-filter");
 const customDateRange=document.getElementById("custom-date-range");
 const startDate=document.getElementById("start-date");
 const endDate=document.getElementById("end-date");
+let customCategories=JSON.parse(
+    localStorage.getItem("cashlyCustomCategories")
+) || [];
+const defaultCategories=[
+{name:"Food",type:"expense"},
+{name:"Transport",type:"expense"},
+{name:"Bills",type:"expense"},
+{name:"Shopping",type:"expense"},
+{name:"Salary",type:"income"},
+{name:"Freelance",type:"expense"},    
+];
+function getAllCategories(){
+    return[...defaultCategories,...customCategories];
+}
+function populateTransactionCategories(){
+    const selectedType=transactionType.value;
+    const previousCategory=transactionCategory.value;
+    transactionCategory.innerHTML='<option value="">Select Category</option>';
+    const availableCategories=getAllCategories().filter(function(category){
+        return category.type===selectedType;
+    });
+    availableCategories.forEach(function(category){
+        const option=document.createElement("option");
+        option.value=category.name.toLowerCase();
+        option.textContent=category.name;
+        transactionCategory.appendChild(option);
+    });
+    if (availableCategories.some(function(category){
+        return category.name.toLowerCase()===previousCategory;
+    })){
+        transactionCategory.value=previousCategory;
+    }
+}
+function populateCategoryFilter(){
+    const previousCategory=categoryFilter.value;
+    categoryFilter.innerHTML='<option value="all">All Categories</option>';
+    getAllCategories().forEach(function(category){
+        const option=document.createElement("option");
+        option.value=category.name.toLowerCase();
+        option.textContent=category.name;
+        categoryFilter.appendChild(option);
+    });
+    categoryFilter.value=previousCategory;
+}
+transactionType.addEventListener("change",function(){
+    populateTransactionCategories();
+});
+populateTransactionCategories();
+populateCategoryFilter();
 addTransactionBtn.addEventListener("click",function(){
     editingTransactionId=null;
     document.getElementById("modal-title").textContent="Add Transaction";
@@ -199,6 +248,7 @@ transactionList.addEventListener("click",function(event){
     }
 
     transactionType.value=transaction.type;
+    populateTransactionCategories();
     transactionCategory.value=transaction.category;
     transactionDescription.value=transaction.description;
     transactionDate.value=transaction.date;
