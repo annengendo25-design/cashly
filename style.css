@@ -324,4 +324,26 @@ footer{
     transform: translateY(-4px);
 }
 
+body.dark-mode{
+    background-color: #182725;
+    color: #ffffff;
+}
+body.dark-mode .settings-section,
+body.dark-mode .summary-card,
+body.dark-mode .dashboard-card{
+    background-color: #263b39;
+    color: #ffffff;
+}
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode p,
+body.dark-mode label{
+    color: #ffffff;
+}
+
+
+
+
+
 
