@@ -353,6 +353,28 @@ body.dark-mode .sidebar-promo p{
 body.dark-mode .sidebar-promo i{
     color: #bc77ec;
 }
+body.dark-mode .sidebar-nav{
+    background-color: #263b39;
+    color: #ffffff;
+}
+body.dark-mode .sidebar-nav i{
+    color: #9250c4;
+}
+body.dark-mode .sidebar-nav span{
+    color: #ffffff;
+}
+body.dark-mode .sidebar{
+     background-color: #263b39;
+}
+body.dark-mode .sidebar a{
+    color: #ffffff;
+}
+
+
+
+
+
+
 
 
 
