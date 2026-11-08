@@ -61,7 +61,7 @@ function displayRecentTransactions(){
         dateCell.textContent=formattedDate;
         const amountCell=document.createElement("td");
         amountCell.className= `${typeClass}-text`;
-        amountCell.textContent=`${sign}KES $;{transaction.amount.toLocaleString("en-KE")}`;
+        amountCell.textContent=`${sign}KES ${transaction.amount.toLocaleString("en-KE")}`;
         const actionsCell=document.createElement("td");
         actionsCell.textContent="--";
         row.append(
@@ -76,3 +76,8 @@ function displayRecentTransactions(){
     });
 }
 displayRecentTransactions();
+
+const dashboardAddButton=document.querySelector(".add-transaction-button");
+dashboardAddButton.addEventListener("click",function(){
+    window.location.href="transactions.html?add=true";
+});

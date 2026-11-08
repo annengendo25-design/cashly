@@ -200,3 +200,12 @@ transactionList.addEventListener("click",function(event){
     document.getElementById("save-transaction").textContent="Update Transaction";
     transactionModal.hidden=false;
 });
+
+const urlParams=new URLSearchParams(window.location.search);
+if(urlParams.get("add")==="true"){
+    editingTransactionId=null;
+    transactionForm.reset();
+    document.getElementById("modal-title").textContent="Add Transaction";
+    document.getElementById("save-transaction").textContent="Save Transaction";
+    transactionModal.hidden=false;
+}
