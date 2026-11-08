@@ -1,6 +1,6 @@
-const transactions=JSON.parse(
+const transactions= JSON.parse(
     localStorage.getItem("CashlyTransactions")
-)||[];
+) || [];
 const dashboardIncome=document.getElementById("dashboard-income");
 const dashboardExpenses=document.getElementById("dashboard-expenses");
 const dashboardBalance=document.getElementById("dashboard-balance");
@@ -48,20 +48,20 @@ function displayRecentTransactions(){
         });
         const typeCell=document.createElement("td");
         const iconSpan=document.createElement("span");
-        iconSpan.className=transaction-icon $;{typeClass};
+        iconSpan.className=`transaction-icon ${typeClass}`;
         const iconElement=document.createElement("i");
-        iconElement.className=fa-solid $;{icon};
+        iconElement.className=`fa-solid ${icon}`;
         iconSpan.appendChild(iconElement);
         typeCell.appendChild(iconSpan);
         const categoryCell=document.createElement("td");
-        categoryCell.textContent=transaction.category.charAt(0).toUppercase()+transaction.category.slice(1);
+        categoryCell.textContent=transaction.category.charAt(0).toUpperCase()+transaction.category.slice(1);
         const descriptionCell=document.createElement("td");
         descriptionCell.textContent=transaction.description;
         const dateCell=document.createElement("td");
         dateCell.textContent=formattedDate;
         const amountCell=document.createElement("td");
-        amountCell.className= $;{typeClass}-text;
-        amountCell.textContent=$;{sign}KES $;{transaction.amount.toLocaleString("en-KE")};
+        amountCell.className= `${typeClass}-text`;
+        amountCell.textContent=`${sign}KES $;{transaction.amount.toLocaleString("en-KE")}`;
         const actionsCell=document.createElement("td");
         actionsCell.textContent="--";
         row.append(
