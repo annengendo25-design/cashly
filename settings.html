@@ -73,19 +73,21 @@
                     </div>
                 </div>
 
-                <div class="settings-form">
-                    <label for="Full Name">
+                <form class="settings-form" id="settings-form">
+                    <label for="full Name">
+                        Full Name
                         <input type="text"
                         placeholder="Enter your name">
                     </label>
 
-                    <label for="Email Address">
+                    <label for="email-address">
+                        Email Address
                         <input type="email"
                         placeholder="Enter your email">
                     </label>
 
-                    <button class="save-settings-button">Save Changes</button>
-                </div>
+                    <button type="submit" class="save-settings-button">Save Changes</button>
+                </form>
             </section>
 
             <section class="settings-section">
@@ -98,7 +100,7 @@
                 </div>
 
                 <label class="currency-setting">
-                    <select>
+                    <select id="currency-setting">
                         <option value="KES">Kenyan Shilling (KES)</option>
                         <option value="USD">Us Dollar (USD)</option>
                         <option value="EUR">Euro (EUR)</option>
@@ -147,6 +149,7 @@
 
                     <label class="toggle-switch">
                         <input type="checkbox"
+                        id="spending-reminder"
                         checked>
                         <span class="toggle-slider"></span>
                     </label>
