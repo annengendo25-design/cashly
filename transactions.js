@@ -312,7 +312,7 @@ function filterTransactions(){
     }
     if (sortFilter.value==="newest"){
         filteredTransactions.sort(function(a,b){
-            return new Date(b.date)-new date(a.date);
+            return new Date(b.date)-new Date(a.date);
         });
     }
     else if (sortFilter.value==="oldest"){
