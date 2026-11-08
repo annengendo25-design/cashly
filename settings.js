@@ -25,3 +25,16 @@ currencySelect.addEventListener("change",function(){
     alert("Currency preference saved!");
 });
 currencySelect.value=localStorage.getItem("cashlyCurrency") ||"KES";
+
+spendingReminder.addEventListener("change",function(){
+    localStorage.setItem(
+        "cashlySpendingReminder",spendingReminder.checked ? "enabled":"disabled"
+    );
+    alert(
+        spendingReminder.checked ? "Spending reminders enabled!":"Spending reminders disabled"
+    );
+});
+const savedReminder=localStorage.getItem("cashlySpendingReminder");
+if(savedReminder !==null){
+    spendingReminder.checked=savedReminder==="enabled";
+}
