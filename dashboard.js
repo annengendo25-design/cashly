@@ -20,7 +20,7 @@ const totalExpenses=transactions
 },0);
 const availableBalance=totalIncome-totalExpenses;
 function formatCurrency(amount){
-    return `KES ${amount.toLocaleString("en-KE")}`;
+    return window.cashlyFormatCurrency(amount);
 }
 dashboardIncome.textContent=formatCurrency(totalIncome);
 dashboardExpenses.textContent=formatCurrency(totalExpenses);
