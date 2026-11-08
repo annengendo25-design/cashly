@@ -22,6 +22,19 @@ const availableBalance=totalIncome-totalExpenses;
 function formatCurrency(amount){
     return window.cashlyFormatCurrency(amount);
 }
+function convertAmount(amount){
+    const selectedCurrency=localStorage.getItem("cashlyCurrency")||"KES";
+    const rates=JSON.parse(
+        localStorage.getItem("cashlyExchangeRates")
+    );
+    if (selectedCurrency==="KES"){
+        return amount;
+    }
+    if (!rates|| !rates.rates[selectedCurrency]){
+        return amount;
+    }
+    return amount*rates.rates[selectedCurrency];
+}
 dashboardIncome.textContent=formatCurrency(totalIncome);
 dashboardExpenses.textContent=formatCurrency(totalExpenses);
 dashboardBalance.textContent=formatCurrency(availableBalance);
@@ -162,3 +175,7 @@ if(incomeExpenseChart){
         }
     });
 }
+
+window.addEventListener("currencyRatedUpdated",function(){
+    location.reloadI();
+});
