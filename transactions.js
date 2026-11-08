@@ -127,11 +127,9 @@ function updateSummaryCards(){
         return total+transaction.amount;
     },0);
     const totalTransactions=transactions.length;
-    const formattedIncome=totalIncome.toLocaleString("en-KE");
-    const formattedExpenses=totalExpenses.toLocaleString("en-KE");
     summaryCards[0].textContent=totalTransactions;
-    summaryCards[1].textContent=`KES ${formattedIncome}`;
-    summaryCards[2].textContent=`KES ${formattedExpenses}`;
+    summaryCards[1].textContent=window.cashlyFormatCurrency(totalIncome);
+    summaryCards[2].textContent=window.cashlyFormatCurrency(totalExpenses);
 }
 function formatDate(date){
     return new Date(date+"T00:00:00").toLocaleDateString("en-US",{
