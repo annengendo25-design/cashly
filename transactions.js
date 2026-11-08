@@ -11,6 +11,14 @@ const transactionDate=document.getElementById("transaction-date");
 const transactionAmount=document.getElementById("transaction-amount");
 let editingTransactionId=null;
 const summaryCards=document.querySelectorAll(".transaction-summary-card h2");
+const tableSearch=document.getElementById("table-search");
+const typeFilter=document.getElementById("type-filter");
+const categoryFilter=document.getElementById("category-filter");
+const dateFilter=document.getElementById("date-filter");
+const sortFilter=document.getElementById("sort-filter");
+const customDateRange=document.getElementById("custom-date-range");
+const startDate=document.getElementById("start-date");
+const endDate=document.getElementById("end-date");
 addTransactionBtn.addEventListener("click",function(){
     editingTransactionId=null;
     document.getElementById("modal-title").textContent="Add Transaction";
@@ -84,9 +92,9 @@ function formatDate(date){
     });
 }
        
-function displayTransactions(){
+function displayTransactions(transactionArray=transactions){
     transactionList.innerHTML="";
-    transactions.forEach(function(transaction){
+    transactionArray.forEach(function(transaction){
         const row=document.createElement("tr");
         row.dataset.id=transaction.id;
         const typeClass=transaction.type==="income" ? "income":"expense";
@@ -123,7 +131,7 @@ function displayTransactions(){
        transactionList.appendChild(row); 
     });
 
-    transactionCount.textContent=`Showing ${transactions.length} transactions`;
+    transactionCount.textContent=`Showing ${transactionArray.length} transactions`;
     updateSummaryCards();
 }
 transactionForm.addEventListener("submit",function(event){
@@ -209,3 +217,79 @@ if(urlParams.get("add")==="true"){
     document.getElementById("save-transaction").textContent="Save Transaction";
     transactionModal.hidden=false;
 }
+
+function filterTransactions(){
+    let filteredTransactions=[...transactions];
+    const searchValue=tableSearch.value.toLowerCase();
+    filteredTransactions=filteredTransactions.filter(function(transaction){
+        return transaction.description.toLowerCase().includes(searchValue);
+    });
+    if (typeFilter.value !== "all"){
+        filteredTransactions=filteredTransactions.filter(function(transaction){
+            return transaction.type===typeFilter.value;
+        });
+    }
+    if (categoryFilter.value !=="all"){
+        filteredTransactions=filteredTransactions.filter(function(transaction){
+            return transaction.category===categoryFilter.value;
+        });
+    }
+    const today=new  Date();
+    today.setHours(0,0,0,0);
+    if(dateFilter.value==="7days"){
+        const sevenDaysAgo=new Date();
+        sevenDaysAgo.setDate(today.getDate()-6);
+        sevenDaysAgo.setHours(0,0,0,0);
+        filteredTransactions=filteredTransactions.filter(function(transaction){
+            const transactionDate=new Date (transaction.date+"T00:00:00");
+            return transactionDate>=sevenDaysAgo&&transactionDate<=today;
+        });
+    }
+    else if(dateFilter.value==="month"){
+        filteredTransactions=filteredTransactions(function(transaction){
+            const transactionDate=new Date(transaction.date+"T00:00:00");
+            return transactionDate.getMonth()===today.getMonth()&&
+            transactionDate.getFullYear()===today.getFullYear();
+        });
+    }
+    else if(dateFilter.value==="custom"){
+        filteredTransactions=filteredTransactions.filter(function(transaction){
+            const transactionDate=transaction.date;
+            const afterStart=!startDate.value ||transactionDate>=startDate.value;
+            const beforeEnd=!endDate.value ||transactionDate<=endDate.value;
+            return afterStart&&beforeEnd;
+        });
+    }
+    if (sortFilter.value==="newest"){
+        filteredTransactions.sort(function(a,b){
+            return new Date(b.date)-new date(a.date);
+        });
+    }
+    else if (sortFilter.value==="oldest"){
+        filteredTransactions.sort(function(a,b){
+            return new Date(a.date)-new Date(b.date);
+        });
+    }
+    else if(sortFilter.value==="highest"){
+        filteredTransactions.sort(function(a,b){
+            return b.amount-a.amount;
+        });
+    }
+    else if(sortFilter.value==="lowest"){
+        filteredTransactions.sort(function(a,b){
+            return a.amount-b.amount;
+        });
+    }
+    displayTransactions(filteredTransactions);
+}
+
+tableSearch.addEventListener("input",filterTransactions);
+typeFilter.addEventListener("change",filterTransactions);
+categoryFilter.addEventListener("change",filterTransactions);
+dateFilter.addEventListener("change",function(){
+    customDateRange.hidden=dateFilter.value !=="custom";
+    filterTransactions();
+});
+sortFilter.addEventListener("change",filterTransactions);
+startDate.addEventListener("change",filterTransactions);
+endDate.addEventListener("change",filterTransactions);
