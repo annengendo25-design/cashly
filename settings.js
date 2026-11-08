@@ -38,3 +38,85 @@ const savedReminder=localStorage.getItem("cashlySpendingReminder");
 if(savedReminder !==null){
     spendingReminder.checked=savedReminder==="enabled";
 }
+
+const categoryForm=document.getElementById("category-form");
+const categoryNameInput=document.getElementById("category-name");
+const categoryTypeSelect=document.getElementById("category-type");
+const categoryList=document.getElementById("category-list");
+let customCategories=JSON.parse(
+    localStorage.getItem("cashlyCustomCategories")
+) ||[];
+function displayCategories(){
+    categoryList.innerHTML="";
+    if(customCategories.length===0){
+        categoryList.textContent="No custom categories added yet.";
+        return;
+    }
+    customCategories.forEach(function(category,index){
+        const categoryItem=document.createElement("div");
+        categoryItem.classList.add("custom-category-item");
+        const categoryInfo=document.createElement("span");
+        categoryInfo.textContent=category.name+"("+category.type+")";
+        const deleteButton=document.createElement("button");
+        deleteButton.textContent="Delete";
+        deleteButton.type="button";
+        deleteButton.addEventListener("click",function(){
+            deleteCategory(index);
+        });
+        categoryItem.appendChild(categoryInfo);
+        categoryItem.appendChild(deleteButton);
+        categoryList.appendChild(categoryItem);
+    });
+}
+function saveCategories(){
+    localStorage.setItem(
+        "cashlyCustomCategories",JSON.stringify(customCategories)
+    );
+}
+categoryForm.addEventListener("submit",function(event){
+    event.preventDefault();
+    const categoryName=categoryNameInput.value.trim();
+    const categoryType=categoryTypeSelect.value;
+    if(categoryName===""){
+        alert("Please enter a category name.");
+        return;
+    }
+    const alreadyExists=customCategories.some(function(category){
+        return category.name.toLowerCase()===categoryName.toLowerCase()&&category.type===categoryType;
+    });
+    if (alreadyExists){
+        alert("This category already exists for that type.");
+        return;
+    }
+    customCategories.push({
+        name:categoryName,
+        type:categoryType
+    });
+    saveCategories();
+    displayCategories();
+    categoryForm.reset();
+    alert("Category added successfully!");
+});
+function deleteCategory(index){
+    const category=customCategories[index];
+    const transactions=JSON.parse(
+        localStorage.getItem("cashlyTransactions")
+    ) || [];
+    const categoryIsUsed=transactions.some(function(transaction){
+        return transaction.category.toLowerCase()===category.name.toLowerCase()&&transaction.type===category.type;
+    });
+    if (categoryIsUsed){
+        alert("You cannot delete this category because it is being used by a transaction.");
+        return;
+    }
+    const confirmDelete=confirm(
+        "Are you sure you want to delete"+category.name+"?"
+    );
+    if (confirmDelete){
+        customCategories.splice(index,1);
+        saveCategories();
+        displayCategories();
+        alert("Category deleted successfully!");
+    }
+}
+displayCategories();
