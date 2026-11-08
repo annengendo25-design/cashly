@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard | Cashly</title>
+    <script src="dashboard.js" defer></script>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="dashboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css">
@@ -69,7 +70,7 @@
 
                     <div class="summary-info">
                         <p>Total Income</p>
-                        <h2>KES 120,000</h2>
+                        <h2 id="dashboard-income">KES 120,000</h2>
                         <span>+12% this month</span>
                     </div>
                 </article>
@@ -80,7 +81,7 @@
                     </div>
                     <div class="summary-info">
                         <p>Total Expenses</p>
-                        <h2>KES 75,000</h2>
+                        <h2 id="dashboard-expenses">KES 75,000</h2>
                         <span>+8% this month</span>
                     </div>
                 </article>
@@ -91,7 +92,7 @@
                     </div>
                     <div class="summary-info">
                         <p>Available Balance</p>
-                        <h2>KES 45,000</h2>
+                        <h2 id="dashboard-balance">KES 45,000</h2>
                         <span>+4% this month</span>
                     </div>
                 </article>
@@ -129,7 +130,7 @@
 
             <section class="dashboard-card recent-section">
                 <div class="card-heading">
-                    <i class="fa-solid fa-clock"></i></h3>Recent Transactions</h3>
+                    <h3><i class="fa-solid fa-clock"></i></h3>Recent Transactions</h3>
                     <a href="transactions.html" class="view-all">View All <img src="" alt=""></a>
                 </div>
 
@@ -146,7 +147,7 @@
                             </tr>
                         </thead>
 
-                        <tbody>
+                        <tbody id="dashboard-recent-transactions">
                             <tr>
                                 <td>
                                     <span class="transaction-icon income"><i class="fa-solid fa-arrow-up-long"></i></span>
