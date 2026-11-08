@@ -22,3 +22,18 @@ currencySelect.addEventListener("change",function(){
     alert("Currency preference saved!");
 });
 currencySelect.value=localStorage.getItem("cashlyCurrency") ||"KES";
+
+darkModeToggle.addEventListener("change",function(){
+    if(darkModeToggle.checked){
+        document.body.classList.add("dark-mode");
+        localStorage.setItem("cashlyDarkMode","enabled");
+    } else{
+        document.body.classList.remove("dark-mode");
+        localStorage.setItem("cashlyDarkMode","disabled");
+    }
+});
+const savedDarkMode=localStorage.getItem("cashlyDarkMode");
+if(savedDarkMode==="enabled"){
+    darkModeToggle.checked=true;
+    document.body.classList.add("dark-mode");
+}
