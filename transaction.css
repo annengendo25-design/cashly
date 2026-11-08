@@ -118,3 +118,6 @@
     color: #71817e;
     font-size: 13px;
 }
+.transaction-modal[hidden]{
+    display: none;
+}
