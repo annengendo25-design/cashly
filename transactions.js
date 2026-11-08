@@ -163,7 +163,7 @@ function displayTransactions(transactionArray=transactions){
         <td>${formatDate(transaction.date)}</td>
 
         <td class="${typeClass}-text">
-          ${sign}KES ${formattedAmount}
+          ${sign}${formattedAmount}
         </td>
 
         <td>
@@ -341,3 +341,7 @@ dateFilter.addEventListener("change",function(){
 sortFilter.addEventListener("change",filterTransactions);
 startDate.addEventListener("change",filterTransactions);
 endDate.addEventListener("change",filterTransactions);
+
+window.addEventListener("currencyRatesUpdated",function(){
+    location.reload();
+});
