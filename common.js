@@ -1,3 +1,28 @@
+ window.cashlyGetCurrencyUser=function(){
+    const users=JSON.parse(localStorage.getItem("cashlyUsers"))||[];
+    const currentUserId=localStorage.getItem("cashlyCurrentUserId");
+    return users.find(function(user){
+        return String(user.id)===currentUserId;
+    })||null;
+ };
+ window.cashlyGetTransactions=function(){
+    const currentUser=window.cashlyGetCurrencyUser();
+    return currentUser?currentUser.transactions:[];
+ };
+ window.cashlySaveTransactions=function(transactions){
+    const users=JSON.parse(localStorage.getItem("cashlyUsers"))||[];
+    const currentUserId=localStorage.getItem("cashlyCurrentUserId");
+    const updatedUsers=users.map(function(user){
+        if (String(user.id)===currentUserId){
+            return{
+                ...user,
+                transactions:transactions
+            };
+        }
+        return user;
+    });
+    localStorage.setItem("cashlyUsers",JSON.stringify(updatedUsers));
+ };
 const themeToggle=document.getElementById("theme-toggle");
 const themeIcon=themeToggle.querySelector("i");
 const profileInitial=document.getElementById("profile-initial");
