@@ -369,9 +369,57 @@ body.dark-mode .sidebar{
 body.dark-mode .sidebar a{
     color: #ffffff;
 }
+.toast-container{
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.toast{
+    min-width: 250px;
+    padding: 15px 20px;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 14px;
+    animation: slideIn 0.3s ease;
+}
+.toast.success{
+    background-color: #2a9d8f;
+}
+.toast-error{
+    background-color: #e76f51;
+}
+.toast.info{
+    background-color: #457b9d;
+}
+.toast.hide{
+    animation: slideOut 0.3s ease forwards;
+}
+@keyframes slideIn{
+    from{
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    to{
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
 
 
-
+@keyframes slideOut{
+    from{
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to{
+        opacity: 0;
+        transform: translateX(100%);
+    }
+}
 
 
 
