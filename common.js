@@ -41,6 +41,20 @@
     });
     localStorage.setItem("cashlyUsers",JSON.stringify(updatedUsers));
  };
+ window.cashlyUpdateCurrentUser=function(updatedData){
+    const users=JSON.parse(localStorage.getItem("cashlyUsers"))||[];
+    const currentUserId=localStorage.getItem("cashlyCurrentUserId");
+    const updatedUsers=user.map(function(user){
+        if(String(user.id)===currentUserId){
+            return{
+                ...user,
+                ...updatedData
+            };
+        }
+        return user;
+    });
+    localStorage.setItem("cashlyUser",JSON.stringify(updatedUsers));
+ }
 const themeToggle=document.getElementById("theme-toggle");
 const themeIcon=themeToggle.querySelector("i");
 const profileInitial=document.getElementById("profile-initial");
