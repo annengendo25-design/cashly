@@ -34,13 +34,14 @@ settingsForm.addEventListener("submit",function(event){
 fullNameInput.value=currentUser?currentUser.name:"";
 emailInput.value=currentUser?currentUser.email:"";
 
+currencySelect.value=currentUser?currentUser.currency||"KES":"KES";
 currencySelect.addEventListener("change",function(){
     const selectedCurrency=currencySelect.value;
-    localStorage.setItem("cashlyCurrency",selectedCurrency);
+    window.cashlyUpdateCurrentUser({
+        currency:selectedCurrency
+    });
     window.cashlyToast("Currency preference saved!","success");
 });
-currencySelect.value=localStorage.getItem("cashlyCurrency") ||"KES";
-
 spendingReminder.addEventListener("change",function(){
     localStorage.setItem(
         "cashlySpendingReminder",spendingReminder.checked ? "enabled":"disabled"
