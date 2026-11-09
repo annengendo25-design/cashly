@@ -106,18 +106,7 @@ const sampleTransactions=[
 ];
 
 let transactions=window.cashlyGetTransactions();
-if(transactions.length===0){
-    const oldTransactions=JSON.parse(
-        localStorage.getItem("cashlyTransactions")
-    )||[];
-    if (oldTransactions.length>0){
-        transactions=oldTransactions;
-        window.cashlySaveTransactions(transactions);
-    }
-    else{
-        transactions=sampleTransactions;
-    }
-}
+
 function saveTransactions(){
     window.cashlySaveTransactions(transactions);
 }
