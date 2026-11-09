@@ -111,6 +111,7 @@
     display: flex;
     align-items: center;
     gap: 15px;
+    margin-left: auto;
 }
 .icon-button,
 .profile-circle{
