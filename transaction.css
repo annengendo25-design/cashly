@@ -71,16 +71,27 @@
 .filter-search{
     flex: 1 1 200px;
     min-width: 180px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 12px;
+    border: 1px solid #e5eeeb;
+    border-radius: 8px;
+    background: #ffffff;
+    box-sizing: border-box;
 }
 .filter-search i{
     color: #71817e;
 }
 .filter-search input{
     width: 100%;
+    min-width: 0;
     border: none;
     outline: none;
     background: transparent;
     font-size: 13px;
+    color: #263b39;
 }
 .transaction-filters select{
     padding: 11px 12px;
