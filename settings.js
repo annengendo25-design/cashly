@@ -14,7 +14,7 @@ settingsForm.addEventListener("submit",function(event){
     if(profileInitial){
         profileInitial.textContent=userName.charAt(0).toUpperCase() || "N";
     }
-    alert("Profile information saved successfully!");
+    window.cashlyToast("Profile information saved successfully!","success");
 });
 fullNameInput.value=localStorage.getItem("cashlyUserName") ||"";
 emailInput.value=localStorage.getItem("cashlyUserEmail") ||"";
@@ -22,7 +22,7 @@ emailInput.value=localStorage.getItem("cashlyUserEmail") ||"";
 currencySelect.addEventListener("change",function(){
     const selectedCurrency=currencySelect.value;
     localStorage.setItem("cashlyCurrency",selectedCurrency);
-    alert("Currency preference saved!");
+    window.cashlyToast("Currency preference saved!","success");
 });
 currencySelect.value=localStorage.getItem("cashlyCurrency") ||"KES";
 
@@ -30,8 +30,8 @@ spendingReminder.addEventListener("change",function(){
     localStorage.setItem(
         "cashlySpendingReminder",spendingReminder.checked ? "enabled":"disabled"
     );
-    alert(
-        spendingReminder.checked ? "Spending reminders enabled!":"Spending reminders disabled"
+    window.cashlyToast(
+        spendingReminder.checked ? "Spending reminders enabled!":"Spending reminders disabled","success"
     );
 });
 const savedReminder=localStorage.getItem("cashlySpendingReminder");
@@ -78,14 +78,14 @@ categoryForm.addEventListener("submit",function(event){
     const categoryName=categoryNameInput.value.trim();
     const categoryType=categoryTypeSelect.value;
     if(categoryName===""){
-        alert("Please enter a category name.");
+        window.cashlyToast("Please enter a category name.","error");
         return;
     }
     const alreadyExists=customCategories.some(function(category){
         return category.name.toLowerCase()===categoryName.toLowerCase()&&category.type===categoryType;
     });
     if (alreadyExists){
-        alert("This category already exists for that type.");
+        window.cashlyToast("This category already exists for that type.","error");
         return;
     }
     customCategories.push({
@@ -95,7 +95,7 @@ categoryForm.addEventListener("submit",function(event){
     saveCategories();
     displayCategories();
     categoryForm.reset();
-    alert("Category added successfully!");
+    window.cashlyToast("Category added successfully!","success");
 });
 function deleteCategory(index){
     const category=customCategories[index];
@@ -106,7 +106,7 @@ function deleteCategory(index){
         return transaction.category.toLowerCase()===category.name.toLowerCase()&&transaction.type===category.type;
     });
     if (categoryIsUsed){
-        alert("You cannot delete this category because it is being used by a transaction.");
+        window.cashlyToast("You cannot delete this category because it is being used by a transaction.","error");
         return;
     }
     const confirmDelete=confirm(
@@ -116,7 +116,7 @@ function deleteCategory(index){
         customCategories.splice(index,1);
         saveCategories();
         displayCategories();
-        alert("Category deleted successfully!");
+        window.cashlyToast("Category deleted successfully!","success");
     }
 }
 displayCategories();
