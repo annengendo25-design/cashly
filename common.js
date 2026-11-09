@@ -100,7 +100,8 @@ let exchangeRates=JSON.parse(
     localStorage.getItem(currencyCacheKey)
 )|| null;
 window.cashlyFormatCurrency=function(amount){
-    const selectedCurrency=localStorage.getItem("cashlyCurrency") ||"KES";
+    const currentUser=window.cashlyGetCurrentUser();
+    const selectedCurrency=currentUser?.currency||"KES";
     const rate=exchangeRates?.rates?.[selectedCurrency];
     const convertedAmount=selectedCurrency==="KES"
     ?amount:rate ?amount*rate:amount;
