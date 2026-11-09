@@ -124,12 +124,16 @@ displayCategories();
 
 const clearDataBtn=document.getElementById("clear-data-btn");
 clearDataBtn.addEventListener("click",function(){
-    const confirmClear=confirm("Are you sure you want to clear all your transactions and custom categories?This action cannot be undone.");
-    if(confirmClear){
+    showConfirmation("Clear All Data?","Are you sure you want to clear all your transactions and custom categories?This action cannot be undone.",
+        function(){
         localStorage.setItem("cashlyTransactions",JSON.stringify([]));
         localStorage.setItem("cashlyCustomCategories",JSON.stringify([]));
-        alert("All transactions and custom categories have being cleared!");
+        customCategories=[];
+        displayCategories();
+        window.cashlyToast("All transactions and custom categories have been cleared!","success"     
+        );
     }
+);
 });
 
 const confirmationModal=document.getElementById("confirmation-modal");
