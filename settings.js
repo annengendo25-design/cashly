@@ -109,15 +109,16 @@ function deleteCategory(index){
         window.cashlyToast("You cannot delete this category because it is being used by a transaction.","error");
         return;
     }
-    const confirmDelete=confirm(
-        "Are you sure you want to delete"+category.name+"?"
+    showConfirmation(
+        "Delete Category?",
+        `Are you sure you want to delete ${category.name}?`,
+        function(){
+            customCategories.splice(index,1);
+            saveCategories();
+            displayCategories();
+            window.cashlyToast("Category deleted successfully!","success");
+        }
     );
-    if (confirmDelete){
-        customCategories.splice(index,1);
-        saveCategories();
-        displayCategories();
-        window.cashlyToast("Category deleted successfully!","success");
-    }
 }
 displayCategories();
 
@@ -129,4 +130,28 @@ clearDataBtn.addEventListener("click",function(){
         localStorage.setItem("cashlyCustomCategories",JSON.stringify([]));
         alert("All transactions and custom categories have being cleared!");
     }
+});
+
+const confirmationModal=document.getElementById("confirmation-modal");
+const confirmationTitle=document.getElementById("confirmation-title");
+const confirmationMessage=document.getElementById("confirmation-message");
+const cancelConfirmation=document.getElementById("cancel-confirmation");
+const confirmAction=document.getElementById("confirm-action");
+let confirmationCallback=null;
+function showConfirmation(title,message,callback){
+    confirmationTitle.textContent=title;
+    confirmationMessage.textContent=message;
+    confirmationCallback=callback;
+    confirmationModal.style.display="flex";
+}
+function closeConfirmation(){
+    confirmationModal.style.display="none";
+    confirmationCallback=null;
+}
+cancelConfirmation.addEventListener("click",closeConfirmation);
+confirmAction.addEventListener("click",function(){
+    if(confirmationCallback){
+        confirmationCallback();
+    }
+    closeConfirmation();
 });
