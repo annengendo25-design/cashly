@@ -19,9 +19,7 @@ const sortFilter=document.getElementById("sort-filter");
 const customDateRange=document.getElementById("custom-date-range");
 const startDate=document.getElementById("start-date");
 const endDate=document.getElementById("end-date");
-let customCategories=JSON.parse(
-    localStorage.getItem("cashlyCustomCategories")
-) || [];
+let customCategories=window.cashlyGetCustomCategories();
 const defaultCategories=[
 {name:"Food",type:"expense"},
 {name:"Transport",type:"expense"},
@@ -107,7 +105,19 @@ const sampleTransactions=[
     },
 ];
 
-let transactions=JSON.parse(localStorage.getItem("cashlyTransactions")) || sampleTransactions;
+let transactions=window.cashlyGetTransactions();
+if(transactions.length===0){
+    const oldTransactions=JSON.parse(
+        localStorage.getItem("cashlyTransactions")
+    )||[];
+    if (oldTransactions.length>0){
+        transactions=oldTransactions;
+        window.cashlySaveTransactions(transactions);
+    }
+    else{
+        transactions=sampleTransactions;
+    }
+}
 function saveTransactions(){
     localStorage.setItem("cashlyTransactions", JSON.stringify(transactions));
 }
