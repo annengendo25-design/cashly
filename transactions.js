@@ -222,14 +222,17 @@ transactionList.addEventListener("click",function(event){
     }
     const row=deleteButton.closest("tr");
     const transactionId=Number(row.dataset.id);
-    const confirmDelete=confirm("Are you sure you want to delete this transaction?");
-    if(confirmDelete){
-        transactions=transactions.filter(function(transaction){
-            return transaction.id !== transactionId;
-        });
-        saveTransactions();
-        displayTransactions();
-    }
+    showConfirmation(
+        "Delete Transaction?","Are you sure you want to delete this transaction?This action cannot be undone.",
+        function(){
+            transactions=transactions.filter(function(transaction){
+                return transaction.id !==transactionId;
+            });
+            saveTransactions();
+            displayTransactions();
+            window.cashlyToast("Transaction deleted successfully!","success");
+        }
+    );
 });
 transactionList.addEventListener("click",function(event){
     const editButton=event.target.closest(".edit-button");
@@ -344,4 +347,30 @@ endDate.addEventListener("change",filterTransactions);
 
 window.addEventListener("currencyRatesUpdated",function(){
     location.reload();
+});
+
+const confirmationModal=document.getElementById("confirmation-modal");
+const confirmationTitle=document.getElementById("confirmation-title");
+const confirmationMessage=document.getElementById("confirmation-message");
+const cancelConfirmation=document.getElementById("cancel-confirmation");
+const confirmAction=document.getElementById("confirm-action");
+let confirmationCallback=null;
+function showConfirmation(title,message,callback){
+    confirmationTitle.textContent=title;
+    confirmationMessage.textContent=message;
+    confirmationCallback=callback;
+    confirmationModal.hidden=false;
+    confirmationModal.style.display="flex";
+}
+function closeConfirmation(){
+    confirmationModal.style.display="none";
+    confirmationModal.hidden=true;
+    confirmationCallback=null;
+}
+cancelConfirmation.addEventListener("click",closeConfirmation);
+confirmAction.addEventListener("click",function(){
+    if(confirmationCallback){
+        confirmationCallback();
+    }
+    closeConfirmation();
 });
