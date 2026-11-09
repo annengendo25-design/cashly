@@ -4,20 +4,35 @@ const emailInput=document.getElementById("email-address");
 const currencySelect=document.getElementById("currency-select");
 const spendingReminder=document.getElementById("spending-reminder");
 
+const currentUser=window.cashlyGetCurrentUser();
 settingsForm.addEventListener("submit",function(event){
     event.preventDefault();
     const userName=fullNameInput.value.trim();
-    const userEmail=emailInput.value.trim();
-    localStorage.setItem("cashlyUserName",userName);
-    localStorage.setItem("cashlyUserEmail",userEmail);
+    const userEmail=emailInput.value.trim().toLowerCase();
+    if(!userName||!userEmail){
+        window.cashlyToast("Please fill in all profile details.","error");
+        return;
+    }
+    const users=JSON.parse(localStorage.getItem("cashlyUsers"))||[];
+    const emailExists=users.some(function(user){
+        return user.email===userEmail&&String(user.id)!==String(currentUser.id);
+    });
+    if(emailExists){
+        window.cashlyToast("This email is aleady being used by another account.","error");
+        return;
+    }
+    window.cashlyUpdateCurrentUser({
+        name:userName,
+        email:userEmail
+    });
     const profileInitial=document.getElementById("profile-initial");
     if(profileInitial){
-        profileInitial.textContent=userName.charAt(0).toUpperCase() || "N";
+        profileInitial.textContent=userName.charAt(0).toUpperCase();
     }
     window.cashlyToast("Profile information saved successfully!","success");
 });
-fullNameInput.value=localStorage.getItem("cashlyUserName") ||"";
-emailInput.value=localStorage.getItem("cashlyUserEmail") ||"";
+fullNameInput.value=currentUser?currentUser.name:"";
+emailInput.value=currentUser?currentUser.email:"";
 
 currencySelect.addEventListener("change",function(){
     const selectedCurrency=currencySelect.value;
