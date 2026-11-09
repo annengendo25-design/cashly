@@ -1,4 +1,4 @@
- window.cashlyGetCurrencyUser=function(){
+ window.cashlyGetCurrentUser=function(){
     const users=JSON.parse(localStorage.getItem("cashlyUsers"))||[];
     const currentUserId=localStorage.getItem("cashlyCurrentUserId");
     return users.find(function(user){
@@ -6,7 +6,7 @@
     })||null;
  };
  window.cashlyGetTransactions=function(){
-    const currentUser=window.cashlyGetCurrencyUser();
+    const currentUser=window.cashlyGetCurrentUser();
     return currentUser?currentUser.transactions:[];
  };
  window.cashlySaveTransactions=function(transactions){
@@ -44,7 +44,7 @@
  window.cashlyUpdateCurrentUser=function(updatedData){
     const users=JSON.parse(localStorage.getItem("cashlyUsers"))||[];
     const currentUserId=localStorage.getItem("cashlyCurrentUserId");
-    const updatedUsers=user.map(function(user){
+    const updatedUsers=users.map(function(user){
         if(String(user.id)===currentUserId){
             return{
                 ...user,
@@ -53,7 +53,7 @@
         }
         return user;
     });
-    localStorage.setItem("cashlyUser",JSON.stringify(updatedUsers));
+    localStorage.setItem("cashlyUsers",JSON.stringify(updatedUsers));
  }
 const themeToggle=document.getElementById("theme-toggle");
 const themeIcon=themeToggle.querySelector("i");
@@ -83,9 +83,9 @@ if(darkModeToggle){
     });
 }
 function updateProfileInitial(){
-    const savedName=localStorage.getItem("cashlyUserName");
-    if(savedName&&savedName.trim()!==""){
-        profileInitial.textContent=savedName.trim().charAt(0).toUpperCase();
+    const currentUser=window.cashlyGetCurrentUser();
+    if(currentUser&&currentUser.name){
+        profileInitial.textContent=currentUser.name.trim().charAt(0).toUpperCase();
     } 
     else{
         profileInitial.textContent="N";
