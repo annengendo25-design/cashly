@@ -43,3 +43,21 @@ registerForm.addEventListener("submit",function(event){
     registerView.setAttribute("hidden","");
     loginView.removeAttribute("hidden");
 });
+
+const loginForm=document.getElementById("login-form");
+loginForm.addEventListener("submit",function(event){
+    event.preventDefault();
+    const userEmail=document.getElementById("login-email").value.trim().toLowerCase();
+    const userPassword=document.getElementById("login-password").value;
+    const users=JSON.parse(localStorage.getItem("cashlyUsers"))||[];
+    const currentUser=users.find(function(user){
+        return user.email===userEmail&&user.password===userPassword;
+    });
+    if(!currentUser){
+        alert("Incorrect email or password.Please try again.");
+        return;
+    }
+    localStorage.setItem("cashlyCurrentUserId",currentUser.id);
+    alert("Login successful!Welcome back,"+currentUser.name+"!");
+    window.location.href="dashboard.html";
+});
