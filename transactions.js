@@ -119,7 +119,7 @@ if(transactions.length===0){
     }
 }
 function saveTransactions(){
-    localStorage.setItem("cashlyTransactions", JSON.stringify(transactions));
+    window.cashlySaveTransactions(transactions);
 }
 function updateSummaryCards(){
     const totalIncome=transactions
