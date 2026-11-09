@@ -121,3 +121,56 @@
 .transaction-modal[hidden]{
     display: none;
 }
+.confirmation-overlay{
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+.confirmation-box{
+    background: var(--dark-teal);
+    color: var(--mint);
+    width: 100%;
+    max-width: 400px;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+}
+.confirmation-box i{
+    font-size: 35px;
+    color: #bc77ec;
+    margin-bottom: 15px;
+}
+.confirmation-box h2{
+    margin-bottom: 10px;
+}
+.confirmation-box p{
+    margin-bottom: 25px;
+    line-height: 1.5;
+}
+.confirmation-actions{
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+.confirmation-actions button{
+    padding: 11px 18px;
+    border: none;
+    border-radius: 7px;
+    font-size: 14px;
+}
+#cancel-confirmation{
+    background: #e5e5e5;
+    color: #333;
+}
+#confirm-action{
+    background: #bc77ec;
+    color: white;
+}
+.confirmation-actions button:hover{
+    opacity: 1;
+}
