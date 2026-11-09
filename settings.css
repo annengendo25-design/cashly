@@ -172,8 +172,8 @@
     padding: 20px;
 }
 .confirmation-box{
-    background: var(--mint);
-    color: var(--dark-teal);
+    background: var(--dark-teal);
+    color: var(--mint);
     width: 100%;
     max-width: 400px;
     padding: 30px;
@@ -182,7 +182,7 @@
 }
 .confirmation-box i{
     font-size: 35px;
-    color: #e76f51;
+    color: #bc77ec;
     margin-bottom: 15px;
 }
 .confirmation-box h2{
@@ -208,7 +208,7 @@
     color: #333;
 }
 #confirm-action{
-    background: #e76f51;
+    background: #bc77ec;
     color: white;
 }
 .confirmation-actions button:hover{
