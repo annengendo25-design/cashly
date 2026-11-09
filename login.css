@@ -93,3 +93,6 @@ body{
 .auth-switch a:hover{
     text-decoration: underline;
 }
+.auth-form[hidden]{
+    display: none !important;
+}
