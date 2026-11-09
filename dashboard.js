@@ -1,6 +1,5 @@
-const transactions= JSON.parse(
-    localStorage.getItem("cashlyTransactions")
-) || [];
+const transactions= window.cashlyGetTransactions();
+  
 const dashboardIncome=document.getElementById("dashboard-income");
 const dashboardExpenses=document.getElementById("dashboard-expenses");
 const dashboardBalance=document.getElementById("dashboard-balance");
