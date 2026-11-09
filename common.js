@@ -24,7 +24,7 @@
     localStorage.setItem("cashlyUsers",JSON.stringify(updatedUsers));
  };
  window.cashlyGetCustomCategories=function(){
-    const currentUser=window.cashlyGetCurrencyUser();
+    const currentUser=window.cashlyGetCurrentUser();
     return currentUser?currentUser.customCategories||[]:[];
  };
  window.cashlySaveCustomCategories=function(categories){
