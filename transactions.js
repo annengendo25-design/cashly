@@ -77,34 +77,6 @@ cancelTransactionBtn.addEventListener("click",function(){
     transactionModal.hidden=true;
 });
 
-const sampleTransactions=[
-    {
-        id: 1,
-        type:"income",
-        category:"salary",
-        description:"Monthly Salary",
-        date:"2026-11-01",
-        amount:95000
-    },
-    {
-        id: 2,
-        type:"expense",
-        category:"food",
-        description:"Lunch at cafe",
-        date:"2026-11-02",
-        amount:800
-
-    },
-    {
-        id: 3,
-        type:"expense",
-        category:"transport",
-        description:"Matatu fare",
-        date:"2026-11-03",
-        amount:300
-    },
-];
-
 let transactions=window.cashlyGetTransactions();
 
 function saveTransactions(){
