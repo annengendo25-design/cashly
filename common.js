@@ -23,6 +23,24 @@
     });
     localStorage.setItem("cashlyUsers",JSON.stringify(updatedUsers));
  };
+ window.cashlyGetCustomCategories=function(){
+    const currentUser=window.cashlyGetCurrencyUser();
+    return currentUser?currentUser.customCategories||[]:[];
+ };
+ window.cashlySaveCustomCategories=function(categories){
+    const users=JSON.parse(localStorage.getItem("cashlyUsers"))||[];
+    const currentUserId=localStorage.getItem("cashlyCurrentUserId");
+    const updatedUsers=users.map(function(user){
+        if(String(user.id)===currentUserId){
+            return{
+                ...user,
+                customCategories:categories
+            };
+        }
+        return user;
+    });
+    localStorage.setItem("cashlyUsers",JSON.stringify(updatedUsers));
+ };
 const themeToggle=document.getElementById("theme-toggle");
 const themeIcon=themeToggle.querySelector("i");
 const profileInitial=document.getElementById("profile-initial");
