@@ -1,6 +1,10 @@
 const transactions= window.cashlyGetTransactions();
 const currentUser=window.cashlyGetCurrentUser();
 const selectedCurrency=currentUser?.currency||"KES";
+const welcomeMessage=document.getElementById("welcome-message");
+if(welcomeMessage && currentUser){
+    welcomeMessage.textContent=`Welcome back,${currentUser.name}!`;
+}
 const dashboardIncome=document.getElementById("dashboard-income");
 const dashboardExpenses=document.getElementById("dashboard-expenses");
 const dashboardBalance=document.getElementById("dashboard-balance");
