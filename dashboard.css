@@ -359,3 +359,148 @@
     height: 280px;
     width: 100%;
 }
+
+
+@media screen and (max-width:1024px) {
+    .sidebar{
+        width: 210px;
+        padding: 25px 15px;
+    }
+    .dashboard-main{
+        margin-left: 210px;
+        width: calc(100%-210px);
+        padding: 22px;
+    }
+    .summary-grid{
+        grid-template-columns: repeat(2,minmax(0,1fr));
+    }
+    .chart-grid{
+        grid-template-columns: 1fr;
+    }
+    .features-grid{
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+
+@media screen and(max-width:700px) {
+    .dashboard-container{
+        flex-direction: column;
+    }
+    .sidebar{
+        position: static;
+        width: 100%;
+        height: auto;
+        padding: 18px;
+        border-right: none;
+        border-bottom: 1px solid #e8f0ee;
+    }
+    .sidebar .logo{
+        margin-bottom: 18px;
+        font-size: 23px;
+    }
+    .sidebar-nav{
+        display: grid;
+        grid-template-columns: repeat(2,minmax(0,1fr));
+        gap: 8px;
+    }
+    .sidebar-link{
+        padding: 11px;
+        gap: 9px;
+        font-size: 13px;
+    }
+    .sidebar-promo{
+        display: none;
+    }
+    .dashboard-main{
+        margin-left: 0;
+        width: 100%;
+        padding: 20px 16px 90px;
+    }
+    .dashboard-topbar{
+        margin-bottom: 22px;
+    }
+    .welcome-section h1{
+        font-size: 24px;
+    }
+    .summary-grid{
+        grid-template-columns: 1fr;
+        gap: 13px;
+    }
+    .summary-card{
+padding: 18px;
+    }
+    .chart-grid{
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    .dashboard-card{
+        padding: 16px;
+    }
+    .chart-placeholder,
+    .bar-chart-placeholder{
+        height: 240px;
+    }
+    .table-container{
+        width: 100%;
+        overflow-x: auto;
+    }
+    .transaction-table{
+        min-width: 650px;
+    }
+    .trasaction-heading{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .transaction-filters{
+        display: grid;
+        grid-template-columns: repeat(2,minmax(0,1fr));
+    }
+    .filter-search{
+        grid-column: 1 / -1;
+        min-width: 0;
+    }
+    .transaction-filters select{
+        min-width: 0;
+        width: 100%;
+    }
+    .settings-section{
+        padding: 18px;
+    }
+    .settings-form{
+        max-width: 100%;
+    }
+    .add-transaction-button{
+        right: 16px;
+        bottom: 18px;
+        padding: 12px 17px;
+    }
+}
+
+@media screen and (max-width:420px) {
+    .dashboard-main{
+        padding: 16px 12px 85px;
+    }
+    .sidebar{
+        padding: 15px 12px;
+    }
+    .sidebar-link{
+        font-size: 12px;
+        padding: 10px 8px;
+    }
+    .summary-info h2{
+        font-size: 18px;
+    }
+    .dashboard-card,
+    .transaction-list-section{
+        padding: 14px;
+    }
+    .card-heading h3{
+        font-size: 14px;
+    }
+    .modal-buttons{
+        flex-wrap: wrap;
+    }
+    .custom-category-item{
+        flex-wrap: wrap;
+    }
+}
