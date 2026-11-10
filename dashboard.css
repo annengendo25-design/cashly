@@ -86,27 +86,6 @@
     background: transparent;
     border: none;
 }
-.search-box{
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    background-color: #ffffff;
-    border: 1px solid #e0eae7;
-    border-radius: 30px;
-    padding: 12px 18px;
-    width: 350px;
-}
-.search-box i{
-    color: #71817e;
-}
-.search-box input{
-    border: none;
-    outline: none;
-    background: transparent;
-    width: 100%;
-    font-size: 14px;
-    color: #263b39;
-}
 .topbar-actions{
     display: flex;
     align-items: center;
