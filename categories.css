@@ -62,3 +62,58 @@ color: #263b39;
     background: #bc77ec;
     color: #ffffff;
 }
+.settings-form select{
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #e5eeeb;
+    outline: none;
+    background-color: #ffffff;
+    color: #263b39;
+    font-size: 14px;
+    border-radius: 9px;
+}
+#category-list{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.custom-category-item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 18px;
+    background-color: #f7faf9;
+    border: 1px solid #e8f0ee;
+    border-radius: 10px;
+    transition: 0.3s ease;
+}
+.custom-category-item:hover{
+    border-color: #bc77ec;
+    transform: translateY(-2px);
+}
+.custom-category-item span{
+    color: #263b39;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+.custom-category-item button{
+    padding: 8px 15px;
+    border: none;
+    border-radius: 7px;
+    font-size: 12px;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+.custom-category-item button:first-of-type{
+    background-color: #f0e5fa;
+    color: #9250c4;
+}
+.custom-category-item button:last-of-type{
+    background-color: #fde8e9;
+    color: #df6565;
+}
+.custom-category-item button:hover{
+    opacity: 0.8;
+}
