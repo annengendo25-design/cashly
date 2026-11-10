@@ -17,10 +17,17 @@ function displayCategories(){
         const deleteButton=document.createElement("button");
         deleteButton.textContent="Delete";
         deleteButton.type="button";
+        const editButton=document.createElement("button");
+        editButton.textContent="Edit";
+        editButton.type="button"
+        editButton.addEventListener("click",function(){
+            openEditCategory(index);
+        });
         deleteButton.addEventListener("click", function(){
             deleteCategory(index);
         });
         categoryItem.appendChild(categoryInfo);
+        categoryItem.appendChild(editButton);
         categoryItem.appendChild(deleteButton);
         categoryList.appendChild(categoryItem);
     });
@@ -94,3 +101,71 @@ confirmAction.addEventListener("click",function(){
     closeConfirmation();
 });
 displayCategories();
+
+const editCategoryModal=document.getElementById("edit-category-modal");
+const editCategoryForm=document.getElementById("edit-category-form");
+const editCategoryName=document.getElementById("edit-category-name");
+const editCategoryType=document.getElementById("edit-category-type");
+const cancelEditCategory=document.getElementById("cancel-edit-category");
+let editingCategoryIndex=null;
+function openEditCategory(index){
+    editingCategoryIndex=index;
+    const category=customCategories[index];
+    editCategoryName.value=category.name;
+    editCategoryType.value=category.type;
+    editCategoryModal.hidden=false;
+}
+cancelEditCategory.addEventListener("click",function(){
+    editCategoryModal.hidden=true;
+    editCategoryForm.reset();
+    editingCategoryIndex=null;
+});
+editCategoryForm.addEventListener("submit",function(event){
+    event.preventDefault();
+    const newName=editCategoryName.value.trim();
+    const newType=editCategoryType.value;
+    if(!newName){
+        window.cashlyToast("Please enter a category name.","error");
+        return;
+    }
+    const oldCategory=customCategories[editingCategoryIndex];
+    const alreadyExists=customCategories.some(function(category,index){
+        return index !==editingCategoryIndex && category.name.toLowerCase()===newName.toLowerCase()&&category.type===newType;
+    });
+    if(alreadyExists){
+        window.cashlyToast("This category aleady exists.","error");
+        return;
+    }
+    const transactions=window.cashlyGetTransactions();
+    const categoryIsUsed=transactions.some(function(transaction){
+        return transaction.category.toLowerCase()===oldCategory.name.toLowerCase()&& transaction.type===oldCategory.type;
+    });
+    if(categoryIsUsed && newType !==oldCategory.type){
+        window.cashlyToast("You cannot change the type a category already used in transactions.","error");
+        return;
+    }
+    if(categoryIsUsed&& newName !==oldCategory.name){
+        const updatedTransactions=transactions.map(function(transaction){
+            if(
+                transaction.category.toLowerCase()===oldCategory.name.toLowerCase() && transaction.type===oldCategory.type
+            ){
+                return{
+                    ...transaction,
+                    category:newName.toLowerCase()
+                };
+            }
+            return transaction;
+        });
+        window.cashlySaveTransactions(updatedTransactions);
+    }
+    customCategories[editingCategoryIndex]={
+        name:newName,
+        type:newType
+    };
+    saveCategories();
+    displayCategories();
+    editCategoryModal.hidden=true;
+    editCategoryForm.reset();
+    editingCategoryIndex=null;
+    window.cashlyToast("Category updated successfully!","success");
+});
