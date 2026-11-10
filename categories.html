@@ -127,5 +127,36 @@
         </div>
       </div>
     </div>
+
+    <div class="category-edit-modal" id="edit-category-modal" hidden>
+        <div class="category-edit-modal-content">
+            <h2>Edit Category</h2>
+            <form id="edit-category-form">
+                <label for="edit-category-name">
+                    Category Name
+                </label>
+                <input type="text"
+                id="edit-category-name"
+                placeholder="Enter category name"
+                required>
+                <label for="edit-category-type">
+                    Category Type
+                </label>
+                <select id="edit-category-type">
+                    <option value="expense">Expense</option>
+                    <option value="income">Income</option>
+                </select>
+
+                <div class="modal-buttons">
+                    <button type="button" id="cancel-edit-category">
+                        Cancel
+                    </button>
+                    <button type="submit" id="save-category-edit">
+                        Save Changes
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
   </body>
 </html>
