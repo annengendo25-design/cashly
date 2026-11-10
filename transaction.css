@@ -105,7 +105,7 @@
 }
 .transaction-count{
     margin-top: 18px;
-    color: #71817e;
+    color: #263b39;
     font-size: 13px;
 }
 .confirmation-overlay{
@@ -233,4 +233,12 @@ outline: none;
 }
 .modal-buttons button:hover{
     opacity: 0.85;
+}
+.dark-mode .transaction-table td:nth-child(2),
+.dark-mode .transaction-table td:nth-child(3),
+.dark-mode .transaction-table td:nth-child(4){
+    color: #263b39;
+}
+.dark-mode .transaction-count{
+    color: #263b39;
 }
