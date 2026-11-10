@@ -11,14 +11,15 @@
     display: none !important;
 }
 .category-edit-modal-content{
-    background-color: #ffffff;
+    background-color: #263b39;
     width: 100%;
     max-width: 480px;
     padding: 30px;
     border-radius: 16px;
+    border: 1px solid #526663;
 }
 .category-edit-modal-content h2{
-    color: #263b39;
+    color: #ffffff;
     margin-bottom: 25px;
 }
 #edit-category-form{
@@ -27,7 +28,7 @@
     gap: 12px;
 }
 #edit-category-form label{
-    color: #526663;
+    color: #839491;
     font-size: 13px;
     font-weight: 600;
 }
