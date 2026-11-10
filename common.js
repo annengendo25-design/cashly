@@ -165,3 +165,27 @@ window.cashlyToast=function(message,type="success"){
         },300);
     },3000);
 };
+
+window.cashlyLogout=function(){
+    localStorage.removeItem("cashlyCurrentUserId");
+    window.location.href="login.html";
+};
+const protectPages=[
+    "dashboard.html",
+    "transactions.html",
+    "settings.html",
+    "categories.html"
+];
+const currentPage=window.location.pathname.split("/").pop();
+if(
+    protectPages.includes(currentPage)&& !window.cashlyGetCurrentUser()
+){
+    window.location.replace("login.html");
+}
+document.addEventListener("click",function(event){
+    const logoutButton=event.target.closest("#logout-btn");
+    if (logoutButton){
+        event.preventDefault();
+        window.cashlyLogout();
+    }
+});
