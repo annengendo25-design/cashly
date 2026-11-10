@@ -237,8 +237,20 @@ outline: none;
 .dark-mode .transaction-table td:nth-child(2),
 .dark-mode .transaction-table td:nth-child(3),
 .dark-mode .transaction-table td:nth-child(4){
-    color: #263b39;
+    color: #ffffff;
 }
 .dark-mode .transaction-count{
-    color: #263b39;
+    color: #d3f3f1;
+}
+.dark-mode .transaction-list-heading h2{
+    color: #d3f3f1;
+}
+.dark-mode .transaction-list-heading p{
+    color: #d3f3f1;
+}
+.dark-mode .transaction-table{
+    background-color: #263b39;
+}
+.dark-mode .transaction-list-section{
+    background-color: #263b39;
 }
