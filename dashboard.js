@@ -1,5 +1,6 @@
 const transactions= window.cashlyGetTransactions();
-  
+const currentUser=window.cashlyGetCurrentUser();
+const selectedCurrency=currentUser?.currency||"KES";
 const dashboardIncome=document.getElementById("dashboard-income");
 const dashboardExpenses=document.getElementById("dashboard-expenses");
 const dashboardBalance=document.getElementById("dashboard-balance");
@@ -22,24 +23,25 @@ function formatCurrency(amount){
     return window.cashlyFormatCurrency(amount);
 }
 function convertAmount(amount){
-    const selectedCurrency=localStorage.getItem("cashlyCurrency")||"KES";
     const rates=JSON.parse(
         localStorage.getItem("cashlyExchangeRates")
     );
-    if (selectedCurrency==="KES"){
+    const rate=rates?.rates?.[selectedCurrency];
+    if (selectedCurrency==="KES"|| !rate){
         return amount;
     }
-    if (!rates|| !rates.rates[selectedCurrency]){
-        return amount;
-    }
-    return amount*rates.rates[selectedCurrency];
+    return amount*rates.rates;;
 }
 function formatConvertedAmount(amount){
-    const selectedCurrency=localStorage.getItem("cashlyCurrency")||"KES";
-    return new Intl.NumberFormat("en-KE",{
-        style:"currency",
-        currency:selectedCurrency
-    }).format(amount);
+   const rates=JSON.parse(
+    localStorage.getItem("cashlyExchangeRates")
+   );
+   const displayCurrency=
+   selectedCurrency==="KES"|| rates?.rates?.[selectedCurrency]?selectedCurrency:"KES";
+   return new Intl.NumberFormat("en-KE",{
+    style:"currency",
+    currency:displayCurrency
+   }).format(amount);
 }
 dashboardIncome.textContent=formatCurrency(totalIncome);
 dashboardExpenses.textContent=formatCurrency(totalExpenses);
@@ -77,18 +79,15 @@ return validDate.toLocaleDateString("en-US",{
             day:"2-digit",
             year:"numeric" 
 });
-const today=new Date();
-today.setHours(0,0,0,0);
-return selectedDate<=today;
 }
 function displayRecentTransactions(){
     const recentTransactions =[...transactions]
     .sort(function(a,b){
         const dateA=getValidTransactionDate(a.date);
         const dateB=getValidTransactionDate(b.date);
-        if(!dateA&&!dateB)return 0;
-        if (!dateA)return 1 
-        if(dateB)return -1;
+        if(!dateA && !dateB)return 0;
+        if (!dateA)return 1; 
+        if(!dateB)return -1;
         return dateB-dateA;
     })
     .slice(0,5);
@@ -198,7 +197,7 @@ if(incomeExpenseChart){
         data:{
             labels:["Income","Expenses"],
             datasets:[{
-                label:`Amount (${localStorage.getItem("cashlyCurrency")||"KES"})`,
+                label:`Amount (${selectedCurrency})`,
                 data:[
                     convertAmount(totalIncome),
                     convertAmount(totalExpenses)],
