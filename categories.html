@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Categories | Cashly</title>
+    <script src="common.js" defer></script>
+    <script src="categories.js" defer></script>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="dashboard.css" />
+    <link rel="stylesheet" href="settings.css" />
+    <link rel="stylesheet" href="categories.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css"
+    />
+  </head>
+  <body class="dashboard-body">
+    <div class="dashboard-container">
+      <aside class="sidebar">
+        <a href="index.html" class="logo">
+          <i class="fa-brands fa-canadian-maple-leaf"></i>Cashly <span>.</span>
+        </a>
+
+        <nav class="sidebar-nav">
+          <a href="dashboard.html" class="sidebar-link">
+            <i class="fa-solid fa-house"></i>
+            <span>Dashboard</span>
+          </a>
+
+          <a href="transactions.html" class="sidebar-link">
+            <i class="fa-solid fa-money-bill-wave"></i>
+            <span>Transactions</span>
+          </a>
+
+          <a href="categories.html" class="sidebar-link active">
+            <i class="fa-solid fa-tags"></i>
+            <span>Categories</span>
+          </a>
+
+          <a href="settings.html" class="sidebar-link">
+            <i class="fa-solid fa-gear"></i>
+            <span>Settings</span>
+          </a>
+        </nav>
+
+        <div class="sidebar-promo">
+          <i class="fa-solid fa-chart-line"></i>
+          <h3>Spend Smart.</h3>
+          <p>Save More.</p>
+        </div>
+      </aside>
+
+      <main class="dashboard-main">
+        <header class="dashboard-topbar">
+          <div class="topbar-actions">
+            <button
+              class="icon-button"
+              id="theme-toggle"
+              aria-label="Toggle theme"
+            >
+              <i class="fa-solid fa-moon"></i>
+            </button>
+            <div class="profile-circle" id="profile-initial">N</div>
+          </div>
+        </header>
+
+        <section class="settings-heading">
+          <h1>Custom Categories</h1>
+          <p>Create and manage categories for your income and expenses.</p>
+        </section>
+
+        <section class="settings-section">
+          <div class="settings-section-heading">
+            <i class="fa-solid fa-tags"></i>
+            <div>
+              <h2>Manage Categories</h2>
+              <p>Add categories that suit your financial activities.</p>
+            </div>
+          </div>
+
+          <form class="settings-form" id="category-form">
+            <label for="category-name">
+              Category Name
+              <input
+                type="text"
+                id="category-name"
+                placeholder="e.g Education"
+                required
+              />
+            </label>
+
+            <label for="category-type">
+              Category Type
+              <select id="category-type">
+                <option value="expense">Expense</option>
+                <option value="income">Income</option>
+              </select>
+            </label>
+
+            <button type="submit" class="save-settings-button">
+              Add Category
+            </button>
+          </form>
+        </section>
+
+        <section class="settings-section">
+          <div class="settings-section-heading">
+            <i class="fa-solid fa-list"></i>
+            <div>
+              <h2>Your Categories</h2>
+              <p>View and manage your custom categories.</p>
+            </div>
+          </div>
+          <div id="category-list">No custom categories added yet.</div>
+        </section>
+      </main>
+    </div>
+    <div class="confirmation-overlay" id="confirmation-modal">
+      <div class="confirmation-box">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <h2 id="confirmation-title">Are you sure?</h2>
+        <p id="confirmation-message">This action cannot be undone.</p>
+        <div class="confirmation-actions">
+          <button type="button" id="cancel-confirmation">Cancel</button>
+          <button type="button" id="confirm-action">Yes,Continue</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
