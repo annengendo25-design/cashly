@@ -80,7 +80,7 @@ body{
     transition: 0.3s;
 }
 .auth-button:hover{
-    background: #263b39;
+    background: #8e3e96;
     transform: translateY(-2px);
 }
 .auth-switch{
