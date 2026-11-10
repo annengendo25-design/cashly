@@ -1,0 +1,63 @@
+.category-edit-modal{
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+.category-edit-modal[hidden]{
+    display: none !important;
+}
+.category-edit-modal-content{
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 480px;
+    padding: 30px;
+    border-radius: 16px;
+}
+.category-edit-modal-content h2{
+    color: #263b39;
+    margin-bottom: 25px;
+}
+#edit-category-form{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+#edit-category-form label{
+    color: #526663;
+    font-size: 13px;
+    font-weight: 600;
+}
+#edit-category-form input,
+#edit-category-form select{
+width: 100%;
+box-sizing: border-box;
+padding: 12px;
+border: 1px solid #e5eeeb;
+border-radius: 8px;
+background: #ffffff;
+font-size: 14px;
+color: #263b39;
+}
+#edit-category-form .modal-buttons{
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 15px;
+}
+#edit-category-form button{
+    padding: 12px 18px;
+    border: none;
+    border-radius: 8px;
+}
+#cancel-edit-category{
+    background: #edf2f0;
+    color: #526663;
+}
+#save-category-edit{
+    background: #bc77ec;
+    color: #ffffff;
+}
