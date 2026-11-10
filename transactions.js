@@ -103,7 +103,20 @@ function updateSummaryCards(){
     summaryCards[2].textContent=window.cashlyFormatCurrency(totalExpenses);
 }
 function formatDate(date){
-    return new Date(date+"T00:00:00").toLocaleDateString("en-US",{
+    if(!/^\d{4}-\d{2}-\d{2}$/.test(date)){
+        return "Date unavailable";
+    }
+    const [year,month,day]=date.split("-").map(Number);
+    const validDate=new Date(year,month-1,day);
+if(
+    validDate.getFullYear()!==year||
+    validDate.getMonth()!==month-1||
+    validDate.getDate()!==day
+){
+        return "Date unavailable";
+
+}
+return validDate.toLocaleDateString("en-US",{
         month:"short",
         day:"2-digit",
         year:"numeric"
@@ -152,8 +165,34 @@ function displayTransactions(transactionArray=transactions){
     transactionCount.textContent=`Showing ${transactionArray.length} transactions`;
     updateSummaryCards();
 }
+
+function isValidTransactionDate(dateValue){
+    if(!/^\d{4}-\d{2}-\d{2}$/.test(dateValue)){
+        return false;
+    }
+    const [year,month,day]=dateValue.split("-").map(Number);
+    if(year<2000||year>new Date().getFullYear()){
+        return false;
+    }
+const selectedDate=new Date(year,month-1,day);
+if(
+    selectedDate.getFullYear()!==year||
+    selectedDate.getMonth()!==month-1||
+    selectedDate.getDate()!==day
+){
+    return false;
+}
+const today=new Date();
+today.setHours(0,0,0,0);
+return selectedDate<=today;
+}
 transactionForm.addEventListener("submit",function(event){
     event.preventDefault();
+    if(!isValidTransactionDate(transactionDate.value)){
+        window.cashlyToast("Please enter a valid date between 2000 and today.","error");
+        transactionDate.focus();
+        return;
+    }
     const transactionData={
         type:transactionType.value,
         category:transactionCategory.value,
