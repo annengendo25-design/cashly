@@ -46,10 +46,50 @@ dashboardExpenses.textContent=formatCurrency(totalExpenses);
 dashboardBalance.textContent=formatCurrency(availableBalance);
 
 const recentTransactionTable=document.getElementById("dashboard-recent-transactions");
+function getValidTransactionDate(dateValue){
+    if(typeof dateValue!=="string"||!/^\d{4}-\d{2}-\d{2}$/.test(dateValue)){
+        return null;
+    }
+    const [year,month,day]=dateValue.split("-").map(Number);
+    const today=new Date();
+    today.setHours(0,0,0,0);
+    if(year<2000||year>today.getFullYear()){
+        return null;
+    }
+const selectedDate=new Date(year,month-1,day);
+if(
+    selectedDate.getFullYear()!==year||
+    selectedDate.getMonth()!==month-1||
+    selectedDate.getDate()!==day||
+    selectedDate>today
+){
+    return null;
+}
+return selectedDate;
+}
+function formatTransactionDate(dateValue){
+    const validDate=getValidTransactionDate(dateValue);
+    if(!validDate){
+        return "Date unavailable";
+}
+return validDate.toLocaleDateString("en-US",{
+    month:"short",
+            day:"2-digit",
+            year:"numeric" 
+});
+const today=new Date();
+today.setHours(0,0,0,0);
+return selectedDate<=today;
+}
 function displayRecentTransactions(){
     const recentTransactions =[...transactions]
     .sort(function(a,b){
-        return new Date(b.date)-new Date(a.date);
+        const dateA=getValidTransactionDate(a.date);
+        const dateB=getValidTransactionDate(b.date);
+        if(!dateA&&!dateB)return 0;
+        if (!dateA)return 1 
+        if(dateB)return -1;
+        return dateB-dateA;
     })
     .slice(0,5);
     recentTransactionTable.innerHTML="";
@@ -60,11 +100,7 @@ function displayRecentTransactions(){
         :"expense";
         const icon=transaction.type==="income"? "fa-arrow-up-long":"fa-arrow-down-long";
         const sign=transaction.type==="income"? "+": "-";
-        const formattedDate=new Date(transaction.date+"T00:00:00").toLocaleDateString("en-US",{
-            month:"short",
-            day:"2-digit",
-            year:"numeric"
-        });
+        const formattedDate=formatTransactionDate(transaction.date);
         const typeCell=document.createElement("td");
         const iconSpan=document.createElement("span");
         iconSpan.className=`transaction-icon ${typeClass}`;
