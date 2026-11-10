@@ -42,18 +42,21 @@ currencySelect.addEventListener("change",function(){
     });
     window.cashlyToast("Currency preference saved!","success");
 });
+
+const savedReminder=currentUser
+?currentUser.spendingReminder||"disabled":"disabled";
+spendingReminder.checked=savedReminder==="enabled";
 spendingReminder.addEventListener("change",function(){
-    localStorage.setItem(
-        "cashlySpendingReminder",spendingReminder.checked ? "enabled":"disabled"
-    );
+    const reminderStatus=spendingReminder.checked
+    ?"enabled":"disabled";
+    window.cashlyUpdateCurrentUser({
+        spendingReminder:reminderStatus
+    });
     window.cashlyToast(
-        spendingReminder.checked ? "Spending reminders enabled!":"Spending reminders disabled","success"
+        spendingReminder.checked
+        ?"Spending reminders enabled!":"Spending reminders disabled!","success"
     );
 });
-const savedReminder=localStorage.getItem("cashlySpendingReminder");
-if(savedReminder !==null){
-    spendingReminder.checked=savedReminder==="enabled";
-}
 
 const categoryForm=document.getElementById("category-form");
 const categoryNameInput=document.getElementById("category-name");
