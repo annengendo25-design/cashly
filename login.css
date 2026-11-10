@@ -15,21 +15,25 @@ body{
 .auth-container{
     width: 100%;
     max-width: 430px;
-    background-color: #240217;
+    background-color: #d3f3f1;
     padding: 40px;
     border-radius: 15px;
+    border: 1px solid #777777;
 }
 .auth-logo{
     text-align: center;
     margin-bottom: 35px;
 }
 .auth-logo h1{
-    color: #a65bd9;
+    color: #263b39;
     font-size: 30px;
     margin-bottom: 8px;
 }
 .auth-logo h1 i{
     margin-right: 5px;
+}
+.auth-logo span{
+    color: #bc77ec;
 }
 .auth-logo p{
     color: #777777;
@@ -76,7 +80,7 @@ body{
     transition: 0.3s;
 }
 .auth-button:hover{
-    background: #48103a;
+    background: #263b39;
     transform: translateY(-2px);
 }
 .auth-switch{
