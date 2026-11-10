@@ -382,7 +382,7 @@
     }
 }
 
-@media screen and(max-width:700px) {
+@media screen and (max-width:700px) {
     .dashboard-container{
         flex-direction: column;
     }
@@ -427,7 +427,7 @@
         gap: 13px;
     }
     .summary-card{
-padding: 18px;
+        padding: 18px;
     }
     .chart-grid{
         grid-template-columns: 1fr;

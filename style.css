@@ -423,7 +423,7 @@ body.dark-mode .sidebar a{
     }
 }
 
-@media screen and(max-width:900px) {
+@media screen and (max-width:900px) {
     .navbar{
         padding: 18px 22px;
     }
@@ -455,7 +455,7 @@ body.dark-mode .sidebar a{
     }
 }
 
-@media screen and(max-width:600px){
+@media screen and (max-width:600px){
     .navbar{
         padding: 16px;
         flex-wrap: wrap;
